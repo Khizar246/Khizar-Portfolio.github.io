@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
 		<style>
 			/* Lightbox styles */
 			.lightbox {
@@ -17,6 +18,8 @@
 				width: 100%;
 				height: 100%;
 				background-color: rgba(0, 0, 0, 0.8);
+				opacity: 0;
+				transition: opacity 0.5s ease;
 			}
 
 			.lightbox img {
@@ -27,6 +30,67 @@
 				left: 50%;
 				transform: translate(-50%, -50%);
 			}
+
+			.lightbox.show {
+				opacity: 1;
+			}
+
+			/* Image hover effect */
+			.image img {
+				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+			}
+
+			.image:hover img {
+				transform: scale(1.05);
+				opacity: 0.8;
+			}
+
+			/* Button hover effect */
+			.button {
+				transition: background-color 0.3s ease, transform 0.3s ease;
+			}
+
+			.button:hover {
+				background-color: #ff5a5f; /* Change to your preferred hover color */
+				transform: scale(1.1);
+			}
+
+			/* Skill tags styling */
+			.skills {
+				margin-top: 20px;
+			}
+
+			.skill-tag {
+				display: inline-block;
+				background-color: #f0f0f0;
+				border-radius: 20px;
+				padding: 8px 15px;
+				margin: 5px;
+				font-size: 0.9em;
+				color: #333;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+				transition: background-color 0.3s ease, transform 0.3s ease;
+				text-align: center;
+			}
+
+			.skill-tag:hover {
+				background-color: #ff5a5f;
+				color: white;
+				transform: scale(1.05);
+			}
+
+			.skill-tag img {
+				width: 16px;
+				height: 16px;
+				margin-right: 8px;
+				vertical-align: middle;
+			}
+
+			.skills-header {
+				font-size: 1.5em;
+				margin-bottom: 10px;
+				font-weight: bold;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -36,12 +100,24 @@
 
 			<!-- Intro -->
 			<div id="intro">
-				<h1>Mohd Khizar<br>Portfolio</h1>
+				<h1>Mohd Khizar</h1>
+				<p>Welcome to my portfolio! I’m a Data Analyst with a year of hands-on experience at EY, passionate about exploring data to uncover insights that drive informed, data-driven business decisions, and I excel in collaborative teamwork.</p>
+				<div class="skills">
+					<div class="skills-header">Some of my skills are:</div>
+					<span class="skill-tag"><img data-src="images/python.png" alt="Python Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Python</span>
+					<span class="skill-tag"><img data-src="images/sql.png" alt="SQL Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />SQL</span>
+					<span class="skill-tag"><img data-src="images/tableau.png" alt="Tableau Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Tableau</span>
+					<span class="skill-tag"><img data-src="images/excel.png" alt="Excel Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Excel</span>
+					<span class="skill-tag"><img data-src="images/powerbi.png" alt="Power BI Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Power BI</span>
+					<span class="skill-tag"><img data-src="images/statistics.png" alt="Statistics Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Statistics</span>
+					<span class="skill-tag"><img data-src="images/ml.png" alt="Machine Learning Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Machine Learning</span>
+					<span class="skill-tag"><img data-src="images/streamlit.png" alt="Streamlit Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Streamlit</span>
+					<span class="skill-tag"><img data-src="images/web_scraping.png" alt="Web Scraping Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Web Scraping</span>
+					<span class="skill-tag"><img data-src="images/mysql.png" alt="MySQL Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />MySQL</span>
+					<span class="skill-tag"><img data-src="images/problem_solving.png" alt="Problem Solving Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Problem Solving</span>
+					<span class="skill-tag"><img data-src="images/teamwork.png" alt="Teamwork Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Teamwork</span>			
+				</div>
 
-				<p>Hello, I am Mohd Khizar, a passionate Data Analyst with a strong foundation in SQL, Python, Excel, Tableau, ML, and Statistics. My journey in data analysis is driven by a curiosity to uncover insights and a commitment to leveraging data to solve real-world problems. With a Bachelor's degree in Computer Science and hands-on experience at EY GDS, I have developed a keen eye for detail and a deep understanding of business processes.</p>
-				
-				<p>My portfolio showcases a range of projects, from developing interactive web applications with Streamlit to creating engaging dashboards with Tableau. I am particularly proud of my work on the SQL Free Database Manager Application, which significantly reduced task completion time, making data management more accessible to non-technical users.</p>
-				
 				<ul class="actions">
 					<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
 				</ul>
@@ -55,24 +131,7 @@
 			<!-- Nav -->
 			<nav id="nav">
 				<ul class="links">
-					<li class="active"><a href="index.html">My Projects</a></li>
-				</ul>
-				<ul class="icons">
-					<li><a href="https://www.linkedin.com/in/khizar246/" target="_blank" class="icon brands alt">
-						<img src="images/linkedin.png" alt="LinkedIn Icon" style="width: 30px; height: 30px; vertical-align: middle;" />
-						<span class="label">Linkedin</span></a></li>
-					<li><a href="https://github.com/Khizar246" target="_blank" class="icon brands alt">
-						<img src="images/github.png" alt="Github Icon" style="width: 30px; height: 30px; vertical-align: middle;" />
-						<span class="label">Github</span></a></li>
-					<li><a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" class="icon brands alt">
-						<img src="images/tableau.png" alt="Tableau" style="width: 30px; height: 30px; vertical-align: middle;" />
-						<span class="label">Tableau</span></a></li>
-					<li><a href="mailto:khizerjob75@gmail.com" target="_blank" class="icon brands alt">
-						<img src="images/gmail.png" alt="Gmail icon" style="width: 30px; height: 30px; vertical-align: middle;" />
-						<span class="label">Gmail</span></a></li>
-					<li><a href="assets/Resume.pdf" target="_blank" download class="icon brands alt">
-						<img src="images/resume.png" alt="Resume Icon" style="width: 35px; height: 35px; vertical-align: middle;" />
-						<span class="label">Resume</span></a></li>
+					<li class="active"><a href="#main">My Projects</a></li>
 				</ul>
 			</nav>
 
@@ -86,17 +145,12 @@
 						<p>In this project, I collected and meticulously cleaned data from various sources, creating a relevant and accurate dataset of over 36,000 entries. I then used Python to uncover key patterns and trends, visualizing the insights with Matplotlib and Seaborn. Additionally, I developed and deployed an interactive Streamlit web app on Render, enabling users to explore skill requirements and salary information to make informed career decisions.</p>
 					</header>
 					<a href="#" class="image featured" onclick="openLightbox(this)" data-full-image="images/IT Skill App.png">
-						<img src="images/IT Skill App.png" alt="IT Skills and Salary Trends Application screenshot" />
+						<img data-src="images/IT Skill App.png" alt="IT Skills and Salary Trends Application screenshot" loading="lazy" class="lazy" />
 					</a>
 					<ul class="actions special">
 						<li><a href="https://it-skills-and-salary-trends-in-india.onrender.com/" target="_blank" class="button large">View Project</a></li>
 					</ul>
 				</article>
-				
-				<!-- Lightbox -->
-				<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-					<img src="" alt="Full-size image">
-				</div>				
 
 				<!-- Posts -->
 				<section class="posts">
@@ -105,7 +159,7 @@
 							<h2><a href="#">SALES DASHBOARD</a></h2>
 						</header>
 						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Sales Dasboard.png">
-							<img src="images/Sales Dasboard.png" alt="Sales Dashboard screenshot" />
+							<img data-src="images/Sales Dasboard.png" alt="Sales Dashboard screenshot" loading="lazy" class="lazy" />
 						</a>
 						<p>Created a visually compelling dashboard with interconnected graphs that enable users to explore and analyze data efficiently. Leveraged Tableau's formula functionality to incorporate custom calculations for deeper insights.</p>
 						<ul class="actions special">
@@ -117,7 +171,7 @@
 							<h2><a href="#">SQL Manager APPLICATION</a></h2>
 						</header>
 						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/SQL Manager.png">
-							<img src="images/SQL Manager.png" alt="SQL Manager Application screenshot" />
+							<img data-src="images/SQL Manager.png" alt="SQL Manager Application screenshot" loading="lazy" class="lazy" />
 						</a>
 						<p>I developed an intuitive application using PyQt5, Python, Pandas, and SQLAlchemy that enables database modifications through a user-friendly interface without requiring SQL queries, significantly reducing task completion time by 2 to 3 hours and improving accessibility and efficiency for non-technical users.</p>
 						<ul class="actions special">
@@ -129,7 +183,7 @@
 							<h2><a href="#">Sales Analysis Dashboard</a></h2>
 						</header>
 						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Sales Analysis Dashboard.png">
-							<img src="images/Sales Analysis Dashboard.png" alt="Sales Analysis Dashboard screenshot" />
+							<img data-src="images/Sales Analysis Dashboard.png" alt="Sales Analysis Dashboard screenshot" loading="lazy" class="lazy" />
 						</a>
 						<p>Utilized Tableau's advanced visualization capabilities to develop an intuitive sales analysis dashboard, providing a comprehensive view of product sales across the USA, facilitating data exploration, and supporting data-driven decision-making for sales and marketing strategies.</p>
 						<ul class="actions special">
@@ -141,7 +195,7 @@
 							<h2><a href="#">EXPLORATORY DATA ANALYSIS</a></h2>
 						</header>
 						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/EDA.png">
-							<img src="images/EDA.png" alt="Exploratory Data Analysis project screenshot" />
+							<img data-src="images/EDA.png" alt="Exploratory Data Analysis project screenshot" loading="lazy" class="lazy" />
 						</a>
 						<p>Created an insightful EDA project by scraping and analyzing movie data from IMDb, showcasing the ability to work with unstructured data, apply data manipulation techniques, and visualize trends to provide valuable business insights.</p>
 						<ul class="actions special">
@@ -153,7 +207,7 @@
 							<h2><a href="#">Spending Habits Of Different Generations</a></h2>
 						</header>
 						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Spending Habits.png">
-							<img src="images/Spending Habits.png" alt="Spending Habits Of Different Generations dashboard screenshot" />
+							<img data-src="images/Spending Habits.png" alt="Spending Habits Of Different Generations dashboard screenshot" loading="lazy" class="lazy" />
 						</a>
 						<p>Created this dashboard to showcase the spending habits of different generations.</p>
 						<ul class="actions special">
@@ -165,7 +219,7 @@
 							<h2><a href="#">Data Cleaning Using SQL</a></h2>
 						</header>
 						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/covid.png">
-							<img src="images/covid.png" alt="Data Cleaning Using SQL project screenshot" />
+							<img data-src="images/covid.png" alt="Data Cleaning Using SQL project screenshot" loading="lazy" class="lazy" />
 						</a>
 						<p>Performed a comprehensive analysis of COVID-19 data, uncovering key insights into infection rates, mortality, and vaccination progress across different regions. This project highlights my expertise in SQL and ability to extract actionable insights from complex datasets.</p>
 						<ul class="actions special">
@@ -173,6 +227,11 @@
 						</ul>
 					</article>
 				</section>
+
+				<!-- Lightbox -->
+				<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+					<img src="" alt="Full-size image">
+				</div>
 
 				<!-- Contact Information -->
 				<section class="split contact">
@@ -182,29 +241,23 @@
 						<h3>Socials and Resume</h3>
 						<ul class="icons alt">
 							<li><a href="https://www.linkedin.com/in/khizar246/" target="_blank" class="icon brands alt">
-								<img src="images/linkedin.png" alt="LinkedIn Icon" style="width: 30px; height: 30px; vertical-align: middle;" />
+								<img data-src="images/linkedin.png" alt="LinkedIn Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
 								<span class="label">LinkedIn</span></a></li>
 							<li><a href="https://github.com/Khizar246" target="_blank" class="icon brands alt">
-								<img src="images/github.png" alt="Github Icon" style="width: 30px; height: 30px; vertical-align: middle;" />
+								<img data-src="images/github.png" alt="Github Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
 								<span class="label">GitHub</span></a></li>
 							<li><a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" class="icon brands alt">
-								<img src="images/tableau.png" alt="Tableau" style="width: 30px; height: 30px; vertical-align: middle;" />
+								<img data-src="images/tableau.png" alt="Tableau" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
 								<span class="label">Tableau</span></a></li>
 							<li><a href="mailto:khizerjob75@gmail.com" target="_blank" class="icon brands alt">
-								<img src="images/gmail.png" alt="Gmail icon" style="width: 30px; height: 30px; vertical-align: middle;" />
+								<img data-src="images/gmail.png" alt="Gmail icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
 								<span class="label">Gmail</span></a></li>
 							<li><a href="assets/Resume.pdf" target="_blank" download class="icon brands alt">
-								<img src="images/resume.png" alt="Resume Icon" style="width: 40px; height: 40px; vertical-align: middle;" />
+								<img data-src="images/resume.png" alt="Resume Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />
 								<span class="label">Resume</span></a></li>
 						</ul>
 					</section>
 				</section>
-				</section>
-			</div>
-
-			<!-- Lightbox -->
-			<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-				<img src="" alt="Full-size image">
 			</div>
 
 			<!-- Copyright -->
@@ -223,15 +276,44 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+				var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+				if ("IntersectionObserver" in window) {
+					let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+						entries.forEach(function(entry) {
+							if (entry.isIntersecting) {
+								let lazyImage = entry.target;
+								lazyImage.src = lazyImage.dataset.src;
+								lazyImage.classList.remove("lazy");
+								lazyImageObserver.unobserve(lazyImage);
+							}
+						});
+					});
+
+					lazyImages.forEach(function(lazyImage) {
+						lazyImageObserver.observe(lazyImage);
+					});
+				} else {
+					// Fallback for browsers that do not support IntersectionObserver
+					lazyImages.forEach(function(lazyImage) {
+						lazyImage.src = lazyImage.dataset.src;
+					});
+				}
+			});
+
 			function openLightbox(element) {
 				var lightbox = document.getElementById('lightbox');
 				var fullImage = lightbox.querySelector('img');
 				fullImage.src = element.getAttribute('data-full-image');
 				lightbox.style.display = 'block';
+				setTimeout(() => lightbox.classList.add('show'), 10);  // Add the show class after a slight delay
 			}
 
 			function closeLightbox() {
-				document.getElementById('lightbox').style.display = 'none';
+				var lightbox = document.getElementById('lightbox');
+				lightbox.classList.remove('show');
+				setTimeout(() => lightbox.style.display = 'none', 500);  // Wait for the fade-out effect to complete
 			}
 		</script>
 
