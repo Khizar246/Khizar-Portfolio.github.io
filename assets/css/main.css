@@ -2588,103 +2588,106 @@ input, select, textarea {
 
 /* Image */
 
-	.image {
-		border: 0;
-		display: inline-block;
-		position: relative;
+.image {
+	border: 0;
+	display: inline-block;
+	position: relative;
+}
+
+	.image img {
+		display: block;
+		width: 100%;
+		height: auto;
+		object-fit: cover;
 	}
 
-		.image img {
-			display: block;
+	.image.left, .image.right {
+		max-width: 40%;
+	}
+
+		.image.left img, .image.right img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
 		}
 
-		.image.left, .image.right {
-			max-width: 40%;
+	.image.left {
+		float: left;
+		margin: 0 2rem 2rem 0;
+		top: 0.75rem;
+	}
+
+	.image.right {
+		float: right;
+		margin: 0 0 2rem 2rem;
+		top: 0.75rem;
+	}
+
+	.image.fit {
+		display: block;
+		margin: 2.5rem 0;
+		width: 100%;
+	}
+
+		.image.fit:first-child {
+			margin-top: 0;
 		}
 
-			.image.left img, .image.right img {
-				width: 100%;
-			}
-
-		.image.left {
-			float: left;
-			margin: 0 2rem 2rem 0;
-			top: 0.75rem;
+		.image.fit img {
+			width: 100%;
+			height: 300px; /* Set a fixed height for all images */
+			object-fit: cover;
 		}
 
-		.image.right {
-			float: right;
-			margin: 0 0 2rem 2rem;
-			top: 0.75rem;
+		.image.featured img {
+			width: 100%;
+			height: 600px; /* Different height for featured images */
+			object-fit: cover;
 		}
+
+	.image.main {
+		display: block;
+		margin: 4rem 0;
+		width: 100%;
+	}
+
+		.image.main:first-child {
+			margin-top: 0;
+		}
+
+		.image.main img {
+			width: 100%;
+		}
+
+	@media screen and (max-width: 736px) {
 
 		.image.fit {
-			display: block;
-			margin: 2.5rem 0;
-			width: 100%;
+			margin: 2rem 0;
 		}
-
-			.image.fit:first-child {
-				margin-top: 0;
-			}
-
-			.image.fit img {
-				width: 100%;
-				height: auto;
-				max-height: 300px;
-				object-fit: cover;
-			}
-
-			.image.featured img {
-				width: 100%;
-				height: auto;
-				max-height: 600px; /* Larger size for featured images */
-				object-fit: cover;
-			}
 
 		.image.main {
-			display: block;
-			margin: 4rem 0;
-			width: 100%;
+			margin: 2rem 0;
 		}
 
-			.image.main:first-child {
-				margin-top: 0;
-			}
-
-			.image.main img {
-				width: 100%;
-			}
-
-		@media screen and (max-width: 736px) {
-
-			.image.fit {
-				margin: 2rem 0;
-			}
-
-			.image.main {
-				margin: 2rem 0;
-			}
-
-		}
-
-	a.image {
-		overflow: hidden;
 	}
 
-		a.image img {
-			-moz-transition: -moz-transform 0.2s ease-out;
-			-webkit-transition: -webkit-transform 0.2s ease-out;
-			-ms-transition: -ms-transform 0.2s ease-out;
-			transition: transform 0.2s ease-out;
-		}
+a.image {
+	overflow: hidden;
+}
 
-		a.image:hover img {
-			-moz-transform: scale(1.05);
-			-webkit-transform: scale(1.05);
-			-ms-transform: scale(1.05);
-			transform: scale(1.05);
-		}
+	a.image img {
+		-moz-transition: -moz-transform 0.2s ease-out;
+		-webkit-transition: -webkit-transform 0.2s ease-out;
+		-ms-transition: -ms-transform 0.2s ease-out;
+		transition: transform 0.2s ease-out;
+	}
+
+	a.image:hover img {
+		-moz-transform: scale(1.05);
+		-webkit-transform: scale(1.05);
+		-ms-transform: scale(1.05);
+		transform: scale(1.05);
+	}
 
 /* Actions */
 
