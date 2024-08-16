@@ -2641,7 +2641,7 @@ input, select, textarea {
 
 		.image.featured img {
 			width: 100%;
-			height: 600px; /* Different height for featured images */
+			height: 500px; /* Different height for featured images */
 			object-fit: cover;
 		}
 
