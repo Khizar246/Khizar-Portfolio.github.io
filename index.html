@@ -97,6 +97,44 @@
 				margin-top: 30px; /* Adjust this value to move the button lower */
 			}
 
+			/* Certifications section styling */
+			.certifications {
+				text-align: center;
+				margin: 4em 0;
+				padding: 2em 0;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.certifications h2 {
+				margin-bottom: 1em;
+				font-size: 2em;
+			}
+
+			.certification-item {
+				margin: 2em 0;
+			}
+
+			.certification-item p {
+				margin-bottom: 1em;
+				font-size: 1.1em;
+				color: inherit;
+			}
+
+			.certification-image {
+				max-width: 600px;
+				width: 100%;
+				height: auto;
+				border-radius: 8px;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+				cursor: pointer;
+				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+			}
+
+			.certification-image:hover {
+				transform: scale(1.02);
+				opacity: 0.9;
+			}
+
 		</style>
 	</head>
 	<body class="is-preload">
@@ -107,7 +145,7 @@
 			<!-- Intro -->
 			<div id="intro">
 				<h1>Mohd Khizar - Data Analyst</h1>
-				<p>Welcome to my portfolio! I’m a Data Analyst with a 1.8 year of hands-on experience at EY, passionate about exploring data to uncover insights that drive informed, data-driven business decisions, and I excel in collaborative teamwork.</p>
+				<p>Welcome to my portfolio! I'm a Data Analyst with a 1.8 year of hands-on experience at EY, passionate about exploring data to uncover insights that drive informed, data-driven business decisions, and I excel in collaborative teamwork.</p>
 				<div class="skills">
 					<div class="skills-header">Some of my skills are:</div>
 					<span class="skill-tag"><img data-src="images/python.png" alt="Python Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Python</span>
@@ -187,7 +225,7 @@
 						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/News Agent.png">
 							<img data-src="images/News Agent.png" alt="News Agent" loading="lazy" class="lazy" />
 						</a>
-						<p>Built an AI-powered news research assistant using Python, Streamlit, LangChain, and FAISS that analyzes and summarizes multiple news articles with semantic search and accurate Q&A. Integrated Ollama’s local Mistral model for privacy-focused, source-backed responses and used Newspaper3k for article extraction. Designed a responsive UI to track progress in real time, enabling users to transform hours of manual reading into minutes of focused research.</p>
+						<p>Built an AI-powered news research assistant using Python, Streamlit, LangChain, and FAISS that analyzes and summarizes multiple news articles with semantic search and accurate Q&A. Integrated Ollama's local Mistral model for privacy-focused, source-backed responses and used Newspaper3k for article extraction. Designed a responsive UI to track progress in real time, enabling users to transform hours of manual reading into minutes of focused research.</p>
 						<ul class="actions special">
 							<li><a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_News_Research_Agent" target="_blank" class="button">View Project</a></li>
 						</ul>
@@ -230,6 +268,15 @@
 					</article>
 				</section>
 
+				<!-- Certifications Section -->
+				<section class="certifications">
+					<h2>Certifications</h2>
+					<div class="certification-item">
+						<p>Microsoft Certified: Azure Data Fundamentals (DP-900) — Validates my foundational knowledge of cloud concepts, core Azure services, and basic data concepts.</p>
+						<img data-src="images/DP900_Certification.png" alt="Microsoft Azure Data Fundamentals DP-900 Certification" class="certification-image lazy" onclick="openLightbox(this)" data-full-image="images/DP900_Certification.png" loading="lazy" />
+					</div>
+				</section>
+
 				<!-- Lightbox -->
 				<div id="lightbox" class="lightbox" onclick="closeLightbox()">
 					<img src="" alt="Full-size image">
@@ -251,7 +298,7 @@
 							<li><a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" class="icon brands alt">
 								<img data-src="images/tableau.png" alt="Tableau" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
 								<span class="label">Tableau</span></a></li>
-							<li><a href="mailto:khizerjob75@gmail.com" target="_blank" class="icon brands alt">
+							<li><a href="mailto:khizerwork75@gmail.com" target="_blank" class="icon brands alt">
 								<img data-src="images/gmail.png" alt="Gmail icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
 								<span class="label">Gmail</span></a></li>
 							<li><a href="assets/Resume.pdf" target="_blank" download class="icon brands alt">
