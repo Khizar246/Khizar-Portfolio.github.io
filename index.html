@@ -1,370 +1,534 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Mohd Khizar Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohd Khizar - Data Analyst Portfolio</title>
+    <meta name="description" content="Data Analyst with 1.8+ years experience at EY, specializing in Python, SQL, Power BI, and machine learning solutions.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
 
-		<style>
-			/* Lightbox styles */
-			.lightbox {
-				display: none;
-				position: fixed;
-				z-index: 9999;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: rgba(0, 0, 0, 0.8);
-				opacity: 0;
-				transition: opacity 0.5s ease;
-			}
+    <!-- Navigation Menu Toggle -->
+    <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
+        <i class="fas fa-bars"></i>
+    </button>
 
-			.lightbox img {
-				position: absolute;
-				max-width: 90%;
-				max-height: 90%;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-			}
+    <!-- Navigation Menu -->
+    <nav id="nav-menu" class="nav-menu">
+        <div class="nav-header">
+            <h3>Navigation</h3>
+            <button id="nav-close" class="nav-close" aria-label="Close navigation">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" data-section="home">Home</a></li>
+            <li><a href="#about" data-section="about">About</a></li>
+            <li><a href="#skills" data-section="skills">Skills</a></li>
+            <li><a href="#projects" data-section="projects">Projects</a></li>
+            <li><a href="#certifications" data-section="certifications">Certifications</a></li>
+            <li><a href="#contact" data-section="contact">Contact</a></li>
+        </ul>
+    </nav>
 
-			.lightbox.show {
-				opacity: 1;
-			}
+    <!-- Navigation Overlay -->
+    <div id="nav-overlay" class="nav-overlay"></div>
 
-			/* Image hover effect */
-			.image img {
-				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-			}
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Mohd Khizar</span>
+                    <span class="hero-subtitle">Data Analyst & Business Intelligence Specialist</span>
+                </h1>
+                <p class="hero-description">
+                    Transforming raw data into actionable business insights with 2+ years of experience at EY. 
+                    I specialize in advanced analytics, machine learning, and building scalable data solutions 
+                    that drive strategic decision-making across enterprise environments.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        View My Work
+                    </a>
+                    <a href="assets/Resume.pdf" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Download Resume
+                    </a>
+                </div>
+            </div>
+        </section>
 
-			.image:hover img {
-				transform: scale(1.05);
-				opacity: 0.8;
-			}
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="section-container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            I'm a passionate Data Analyst with a proven track record of delivering impactful business solutions 
+                            through data-driven insights. At EY, I've successfully managed enterprise-scale projects, 
+                            optimized complex SQL queries for millions of records, and built interactive dashboards 
+                            that have influenced critical business decisions.
+                        </p>
+                        <p>
+                            My expertise spans the entire data lifecycle - from data collection and cleaning to 
+                            advanced statistical analysis and machine learning model deployment. I'm particularly 
+                            skilled at translating complex technical findings into clear, actionable recommendations 
+                            for stakeholders across all organizational levels.
+                        </p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <h3>1.8+</h3>
+                                <p>Years Experience</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>15+</h3>
+                                <p>Projects Completed</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>1M+</h3>
+                                <p>Records Processed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-			/* Button hover effect */
-			.button {
-				transition: background-color 0.3s ease, transform 0.3s ease;
-			}
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="section-container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Comprehensive skill set spanning data analysis, visualization, and machine learning</p>
+                
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming & Analytics</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">
+                                <img src="images/python.png" alt="Python" />
+                                Python
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/sql.png" alt="SQL" />
+                                SQL
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/statistics.png" alt="Statistics" />
+                                Statistics
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/ml.png" alt="Machine Learning" />
+                                Machine Learning
+                            </span>
+                        </div>
+                    </div>
 
-			.button:hover {
-				background-color: #ff5a5f; /* Change to your preferred hover color */
-				transform: scale(1.1);
-			}
+                    <div class="skill-category">
+                        <h3>Visualization & BI</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">
+                                <img src="images/tableau.png" alt="Tableau" />
+                                Tableau
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/powerbi.png" alt="Power BI" />
+                                Power BI
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/excel.png" alt="Excel" />
+                                Advanced Excel
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/streamlit.png" alt="Streamlit" />
+                                Streamlit
+                            </span>
+                        </div>
+                    </div>
 
-			/* Skill tags styling */
-			.skills {
-				margin-top: 20px;
-			}
+                    <div class="skill-category">
+                        <h3>Database & Cloud</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">
+                                <img src="images/mysql.png" alt="MySQL" />
+                                MySQL
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/Snowflake.png" alt="Snowflake" />
+                                Snowflake
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/web_scraping.png" alt="Web Scraping" />
+                                Web Scraping
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/selenium.png" alt="Selenium" />
+                                Selenium
+                            </span>
+                        </div>
+                    </div>
 
-			.skill-tag {
-				display: inline-block;
-				background-color: #f0f0f0;
-				border-radius: 20px;
-				padding: 8px 15px;
-				margin: 5px;
-				font-size: 0.9em;
-				color: #333;
-				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-				transition: background-color 0.3s ease, transform 0.3s ease;
-				text-align: center;
-			}
+                    <div class="skill-category">
+                        <h3>Soft Skills</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">
+                                <img src="images/problem_solving.png" alt="Problem Solving" />
+                                Problem Solving
+                            </span>
+                            <span class="skill-tag">
+                                <img src="images/teamwork.png" alt="Teamwork" />
+                                Team Leadership
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-			.skill-tag:hover {
-				background-color: #ff5a5f;
-				color: white;
-				transform: scale(1.05);
-			}
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <div class="section-container">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Showcasing impactful data solutions and analytical insights</p>
 
-			.skill-tag img {
-				width: 16px;
-				height: 16px;
-				margin-right: 8px;
-				vertical-align: middle;
-			}
+                <!-- Featured Project -->
+                <div class="featured-project">
+                    <div class="project-content">
+                        <div class="project-info">
+                            <span class="project-tag">Featured Project</span>
+                            <h3>IT Career Insights Dashboard</h3>
+                            <p>
+                                Engineered a comprehensive career analytics platform by collecting and cleaning 36,000+ 
+                                job postings from multiple sources. Implemented advanced data preprocessing techniques 
+                                and statistical analysis using Python, Matplotlib, and Seaborn to identify key industry 
+                                trends and skill requirements.
+                            </p>
+                            <p>
+                                Developed an interactive web dashboard using modern HTML5, CSS3, and JavaScript, 
+                                enabling professionals to explore salary benchmarks, skill demand patterns, and 
+                                career progression paths in the IT sector.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Data Analysis</span>
+                                <span class="tech-tag">Web Development</span>
+                                <span class="tech-tag">Visualization</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://khizar246.github.io/Indian_IT_Job_Trends.github.io/" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Live Demo
+                                </a>
+                                <a href="https://github.com/Khizar246/Indian_IT_Job_Trends.github.io" target="_blank" class="btn btn-secondary">
+                                    <i class="fab fa-github"></i>
+                                    Source Code
+                                </a>
+                            </div>
+                        </div>
+                        <div class="project-image">
+                            <img src="images/IT Career Insights Dashboard.png" alt="IT Career Insights Dashboard" class="clickable-image" />
+                        </div>
+                    </div>
+                </div>
 
-			.skills-header {
-				font-size: 1.5em;
-				margin-bottom: 10px;
-				font-weight: bold;
-			}
+                <!-- Other Projects Grid -->
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-image-container">
+                            <img src="images/Orders Dashboard.png" alt="Enterprise Sales Analytics Dashboard" class="clickable-image" />
+                            <div class="project-overlay">
+                                <h4>Enterprise-Scale Sales Analytics</h4>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Enterprise-Scale Sales Data Analytics</h4>
+                            <p>
+                                Built a scalable data warehouse with 1M+ transactional records across multiple 
+                                fact and dimension tables. Optimized 20+ complex SQL queries for ETL operations 
+                                in Snowflake and created executive-level Power BI dashboards.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">SQL</span>
+                                <span class="tech-tag">Snowflake</span>
+                                <span class="tech-tag">Power BI</span>
+                                <span class="tech-tag">ETL</span>
+                            </div>
+                            <a href="https://github.com/Khizar246/Analysis_Projects/tree/main/Enterprise_Scale_Order_Data_Analysis" target="_blank" class="btn btn-outline">
+                                <i class="fab fa-github"></i>
+                                View Project
+                            </a>
+                        </div>
+                    </article>
 
-			/* Additional styling to lower the View Project buttons */
-			.actions.special li .button {
-				margin-top: 30px; /* Adjust this value to move the button lower */
-			}
+                    <article class="project-card">
+                        <div class="project-image-container">
+                            <img src="images/Audit Agent.png" alt="AI Audit Agent Interface" class="clickable-image" />
+                            <div class="project-overlay">
+                                <h4>AI Audit Agent</h4>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>AI-Powered Audit Agent</h4>
+                            <p>
+                                Developed an intelligent auditing system using NLP and Large Language Models 
+                                to automate document compliance reviews. Integrated LangChain and Mistral LLM 
+                                for semantic document understanding and automated report generation.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">NLP</span>
+                                <span class="tech-tag">LLM</span>
+                                <span class="tech-tag">Streamlit</span>
+                            </div>
+                            <a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_Audit_Agent" target="_blank" class="btn btn-outline">
+                                <i class="fab fa-github"></i>
+                                View Project
+                            </a>
+                        </div>
+                    </article>
 
-			/* Certifications section styling */
-			.certifications {
-				text-align: center;
-				margin: 4em 0;
-				padding: 2em 0;
-				border-top: 1px solid rgba(255, 255, 255, 0.1);
-			}
+                    <article class="project-card">
+                        <div class="project-image-container">
+                            <img src="images/News Agent.png" alt="AI News Research Agent" class="clickable-image" />
+                            <div class="project-overlay">
+                                <h4>AI News Research Agent</h4>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>AI News Research Assistant</h4>
+                            <p>
+                                Built an intelligent news analysis platform using FAISS vector databases and 
+                                semantic search capabilities. Implemented real-time article extraction and 
+                                summarization with privacy-focused local LLM deployment.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">FAISS</span>
+                                <span class="tech-tag">LangChain</span>
+                                <span class="tech-tag">Ollama</span>
+                            </div>
+                            <a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_News_Research_Agent" target="_blank" class="btn btn-outline">
+                                <i class="fab fa-github"></i>
+                                View Project
+                            </a>
+                        </div>
+                    </article>
 
-			.certifications h2 {
-				margin-bottom: 1em;
-				font-size: 2em;
-			}
+                    <article class="project-card">
+                        <div class="project-image-container">
+                            <img src="images/Finance_Dashboard.png" alt="Personal Finance Dashboard" class="clickable-image" />
+                            <div class="project-overlay">
+                                <h4>Finance Analytics Dashboard</h4>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Interactive Finance Dashboard</h4>
+                            <p>
+                                Designed a comprehensive personal finance analytics platform with dynamic KPIs, 
+                                trend analysis, and predictive insights. Implemented advanced Power BI features 
+                                for budget optimization and expense categorization.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Power BI</span>
+                                <span class="tech-tag">DAX</span>
+                                <span class="tech-tag">Financial Analysis</span>
+                            </div>
+                            <a href="https://github.com/Khizar246/PowerBI_Projects/tree/main/Finance%20Dashboard" target="_blank" class="btn btn-outline">
+                                <i class="fab fa-github"></i>
+                                View Project
+                            </a>
+                        </div>
+                    </article>
 
-			.certification-item {
-				margin: 2em 0;
-			}
+                    <article class="project-card">
+                        <div class="project-image-container">
+                            <img src="images/Sales Analysis Dashboard.png" alt="Sales Analysis Dashboard" class="clickable-image" />
+                            <div class="project-overlay">
+                                <h4>Sales Analysis Dashboard</h4>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Advanced Sales Analytics</h4>
+                            <p>
+                                Leveraged Tableau's advanced visualization capabilities to create an intuitive 
+                                sales performance dashboard. Implemented geographic analysis, trend forecasting, 
+                                and customer segmentation for strategic decision-making.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Tableau</span>
+                                <span class="tech-tag">Data Visualization</span>
+                                <span class="tech-tag">Sales Analytics</span>
+                            </div>
+                            <a href="https://public.tableau.com/views/InteractiveSalesDashboard_16879807819150/SalesDasboardLandingPage" target="_blank" class="btn btn-outline">
+                                <i class="fas fa-external-link-alt"></i>
+                                View Dashboard
+                            </a>
+                        </div>
+                    </article>
 
-			.certification-item p {
-				margin-bottom: 1em;
-				font-size: 1.1em;
-				color: inherit;
-			}
+                    <article class="project-card">
+                        <div class="project-image-container">
+                            <img src="images/Spending Habits.png" alt="Generational Spending Analysis" class="clickable-image" />
+                            <div class="project-overlay">
+                                <h4>Generational Spending Analysis</h4>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <h4>Consumer Behavior Analytics</h4>
+                            <p>
+                                Conducted comprehensive analysis of spending patterns across different generations 
+                                using statistical methods and data visualization. Identified key behavioral trends 
+                                and market opportunities for targeted marketing strategies.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Tableau</span>
+                                <span class="tech-tag">Statistical Analysis</span>
+                                <span class="tech-tag">Market Research</span>
+                            </div>
+                            <a href="https://public.tableau.com/views/SpendingHabitsOfDifferentGenerations/Dashboard1" target="_blank" class="btn btn-outline">
+                                <i class="fas fa-external-link-alt"></i>
+                                View Analysis
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
 
-			.certification-image {
-				max-width: 600px;
-				width: 100%;
-				height: auto;
-				border-radius: 8px;
-				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-				cursor: pointer;
-				transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-			}
+        <!-- Certifications Section -->
+        <section id="certifications" class="certifications-section">
+            <div class="section-container">
+                <h2 class="section-title">Professional Certifications</h2>
+                <p class="section-subtitle">Validated expertise in cloud technologies and data fundamentals</p>
+                
+                <div class="certifications-grid">
+                    <div class="certification-card">
+                        <div class="certification-info">
+                            <h3>Microsoft Certified: Azure Data Fundamentals</h3>
+                            <p class="certification-code">DP-900</p>
+                            <p class="certification-description">
+                                Validates foundational knowledge of cloud concepts, core Azure services, 
+                                and essential data concepts including relational and non-relational data, 
+                                big data, and analytics workloads on Microsoft Azure.
+                            </p>
+                            <div class="certification-skills">
+                                <span class="skill-tag">Azure Cloud</span>
+                                <span class="skill-tag">Data Management</span>
+                                <span class="skill-tag">Analytics</span>
+                                <span class="skill-tag">Cloud Architecture</span>
+                            </div>
+                        </div>
+                        <div class="certification-image">
+                            <img src="images/DP900_Certification.png" alt="Microsoft Azure Data Fundamentals DP-900 Certification" class="clickable-image" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-			.certification-image:hover {
-				transform: scale(1.02);
-				opacity: 0.9;
-			}
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-container">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Ready to discuss data solutions and collaboration opportunities</p>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get In Touch</h3>
+                        <p>
+                            I'm always interested in discussing new opportunities, data challenges, 
+                            and potential collaborations. Whether you're looking for data analysis expertise, 
+                            business intelligence solutions, or consulting on analytics projects, let's connect!
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <a href="mailto:khizerwork75@gmail.com" class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>Email</h4>
+                                    <p>khizerwork75@gmail.com</p>
+                                </div>
+                            </a>
+                            
+                            <a href="https://www.linkedin.com/in/khizar246/" target="_blank" class="contact-method">
+                                <div class="contact-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <h4>LinkedIn</h4>
+                                    <p>Connect professionally</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h3>Professional Profiles</h3>
+                        <div class="social-grid">
+                            <a href="https://www.linkedin.com/in/khizar246/" target="_blank" class="social-link">
+                                <img src="images/linkedin.png" alt="LinkedIn" />
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/Khizar246" target="_blank" class="social-link">
+                                <img src="images/github.png" alt="GitHub" />
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" class="social-link">
+                                <img src="images/tableau.png" alt="Tableau Public" />
+                                <span>Tableau Public</span>
+                            </a>
+                            <a href="mailto:khizerwork75@gmail.com" class="social-link">
+                                <img src="images/gmail.png" alt="Email" />
+                                <span>Email</span>
+                            </a>
+                            <a href="assets/Resume.pdf" target="_blank" class="social-link">
+                                <img src="images/resume.png" alt="Resume" />
+                                <span>Resume</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-		</style>
-	</head>
-	<body class="is-preload">
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Close lightbox">
+                <i class="fas fa-times"></i>
+            </button>
+            <img src="" alt="Full size image" />
+        </div>
+    </div>
 
-		<!-- Wrapper -->
-		<div id="wrapper" class="fade-in">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Mohd Khizar. All rights reserved.</p>
+            <p>Designed with passion for data and innovation.</p>
+        </div>
+    </footer>
 
-			<!-- Intro -->
-			<div id="intro">
-				<h1>Mohd Khizar - Data Analyst</h1>
-				<p>Welcome to my portfolio! I'm a Data Analyst with a 1.8 year of hands-on experience at EY, passionate about exploring data to uncover insights that drive informed, data-driven business decisions, and I excel in collaborative teamwork.</p>
-				<div class="skills">
-					<div class="skills-header">Some of my skills are:</div>
-					<span class="skill-tag"><img data-src="images/python.png" alt="Python Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Python</span>
-					<span class="skill-tag"><img data-src="images/sql.png" alt="SQL Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />SQL</span>
-					<span class="skill-tag"><img data-src="images/tableau.png" alt="Tableau Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Tableau</span>
-					<span class="skill-tag"><img data-src="images/excel.png" alt="Excel Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Excel</span>
-					<span class="skill-tag"><img data-src="images/powerbi.png" alt="Power BI Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Power BI</span>
-					<span class="skill-tag"><img data-src="images/statistics.png" alt="Statistics Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Statistics</span>
-					<span class="skill-tag"><img data-src="images/ml.png" alt="Machine Learning Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Machine Learning</span>
-					<span class="skill-tag"><img data-src="images/streamlit.png" alt="Streamlit Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Streamlit</span>
-					<span class="skill-tag"><img data-src="images/Snowflake.png" alt="Snowflake Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Snowflake</span>
-					<span class="skill-tag"><img data-src="images/web_scraping.png" alt="Web Scraping Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Web Scraping</span>
-					<span class="skill-tag"><img data-src="images/mysql.png" alt="MySQL Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />MySQL</span>
-					<span class="skill-tag"><img data-src="images/selenium.png" alt="Selenium Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Selenium</span>
-					<span class="skill-tag"><img data-src="images/problem_solving.png" alt="Problem Solving Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />Problem Solving</span>
-					<span class="skill-tag"><img data-src="images/teamwork.png" alt="Teamwork Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />Teamwork</span>			
-				</div>
-
-				<ul class="actions">
-					<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly" style="position: relative; top: 50px;">Continue</a></li>
-				</ul>				
-			</div>
-			
-
-			<!-- Header -->
-			<header id="header">
-				<a href="index.html" class="logo">My Projects</a>
-			</header>
-
-			<!-- Main -->
-			<div id="main">
-
-				<!-- Featured Post -->
-				<article class="post featured">
-					<header class="major">
-						<h2>IT Career Insights</h2>
-						<p>In this project, I collected and meticulously cleaned data from various sources, creating a relevant and accurate dataset of over 36,000 entries. I then used Python to uncover key patterns and trends, visualizing the insights with Matplotlib and Seaborn. Additionally, I developed and deployed an interactive dashboard using HTML, CSS and JavaScript, enabling users to explore skill requirements and salary information to make informed career decisions.</p>
-					</header>
-					<a href="#" class="image featured" onclick="openLightbox(this)" data-full-image="images/IT Career Insights Dashboard.png">
-						<img data-src="images/IT Career Insights Dashboard.png" alt="IT Career Insights Dashboard screenshot" loading="lazy" class="lazy" />
-					</a>
-					<ul class="actions special">
-						<li><a href="https://khizar246.github.io/Indian_IT_Job_Trends.github.io/" target="_blank" class="button large">View Project</a></li>
-					</ul>
-				</article>
-
-				<!-- Posts -->
-				<section class="posts">
-					<article>
-						<header>
-							<h2><a href="#">ENTERPRISE-SCALE SALES DATA ANALYTICS</a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Orders Dashboard.png">
-							<img data-src="images/Orders Dashboard.png" alt="Orders Dashboard" loading="lazy" class="lazy" />
-						</a>
-						<p>Engineered a scalable sales dataset with 1M+ transactional records across multiple fact and dimension tables, replicating real-world complexities. Optimized 20+ SQL queries for ETL operations in Snowflake, then connected to Power BI to create an interactive dashboard visualizing key KPIs like revenue trends, customer loyalty, and regional sales, enhancing decision-making.</p>
-						<ul class="actions special">
-							<li><a href="https://github.com/Khizar246/Analysis_Projects/tree/main/Enterprise_Scale_Order_Data_Analysis" target="_blank" class="button">View Project</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<h2><a href="#">AI Audit Agent</a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Audit Agent.png">
-							<img data-src="images/Audit Agent.png" alt="Audit Agent" loading="lazy" class="lazy" />
-						</a>
-						<p>An intelligent auditing Agent that leverages NLP and LLMs to automate the review of large project documents against compliance rules. It replaces tedious manual efforts with fast, accurate, and consistent AI analysis. The tool offers semantic document understanding, rule-based evaluation, and generates executive-ready reports in minutes. Built with Python, Streamlit, LangChain, and Mistral LLM, it's designed for scalability and professional use in SDLC and data integration audits.</p>
-						<ul class="actions special">
-							<li><a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_Audit_Agent" target="_blank" class="button">View Project</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<h2><a href="#">AI News Research Agent</a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/News Agent.png">
-							<img data-src="images/News Agent.png" alt="News Agent" loading="lazy" class="lazy" />
-						</a>
-						<p>Built an AI-powered news research assistant using Python, Streamlit, LangChain, and FAISS that analyzes and summarizes multiple news articles with semantic search and accurate Q&A. Integrated Ollama's local Mistral model for privacy-focused, source-backed responses and used Newspaper3k for article extraction. Designed a responsive UI to track progress in real time, enabling users to transform hours of manual reading into minutes of focused research.</p>
-						<ul class="actions special">
-							<li><a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_News_Research_Agent" target="_blank" class="button">View Project</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<h2><a href="#">Finance DASHBOARD</a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Finance_Dashboard.png">
-							<img data-src="images/Finance_Dashboard.png" alt="Finance Dashboard screenshot" loading="lazy" class="lazy" />
-						</a>
-						<p>Designed an interactive finance dashboard to visualize annual income, expenses, and savings using Power BI. Implemented key performance indicators (KPIs), dynamic filters, and drill-down visuals for deeper financial insights. The dashboard includes time-based trend analysis, category-wise breakdowns, and savings vs. expense comparisons to support better budgeting decisions.</p>
-						<ul class="actions special">
-							<li><a href="https://github.com/Khizar246/PowerBI_Projects/tree/main/Finance%20Dashboard" target="_blank" class="button">View Project</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<h2><a href="#">Sales Analysis Dashboard</a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Sales Analysis Dashboard.png">
-							<img data-src="images/Sales Analysis Dashboard.png" alt="Sales Analysis Dashboard screenshot" loading="lazy" class="lazy" />
-						</a>
-						<p>Utilized Tableau's advanced visualization capabilities to develop an intuitive sales analysis dashboard, providing a comprehensive view of product sales across the USA, facilitating data exploration, and supporting data-driven decision-making for sales and marketing strategies.</p>
-						<ul class="actions special">
-							<li><a href="https://public.tableau.com/views/InteractiveSalesDashboard_16879807819150/SalesDasboardLandingPage?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="button">View Project</a></li>
-						</ul>
-					</article>
-					<article>
-						<header>
-							<h2><a href="#">Spending Habits Of Different Generations</a></h2>
-						</header>
-						<a href="#" class="image fit" onclick="openLightbox(this)" data-full-image="images/Spending Habits.png">
-							<img data-src="images/Spending Habits.png" alt="Spending Habits Of Different Generations dashboard screenshot" loading="lazy" class="lazy" />
-						</a>
-						<p>Key findings were Millennials prioritize electronics, fashion, and hobbies, Generation X focuses on quality groceries and practical investments, Baby Boomers invest in furniture and home improvements, and Traditionalists emphasize essential items, reflecting frugality and simplicity.</p>
-						<ul class="actions special">
-							<li><a href="https://public.tableau.com/views/SpendingHabitsOfDifferentGenerations/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="button">View Project</a></li>
-						</ul>
-					</article>
-				</section>
-
-				<!-- Certifications Section -->
-				<section class="certifications">
-					<h2>Certifications</h2>
-					<div class="certification-item">
-						<p>Microsoft Certified: Azure Data Fundamentals (DP-900) — Validates my foundational knowledge of cloud concepts, core Azure services, and basic data concepts.</p>
-						<img data-src="images/DP900_Certification.png" alt="Microsoft Azure Data Fundamentals DP-900 Certification" class="certification-image lazy" onclick="openLightbox(this)" data-full-image="images/DP900_Certification.png" loading="lazy" />
-					</div>
-				</section>
-
-				<!-- Lightbox -->
-				<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-					<img src="" alt="Full-size image">
-				</div>
-
-				<!-- Contact Information -->
-				<section class="split contact">
-					<section class="alt">
-					</section>
-					<section>
-						<h3>Socials and Resume</h3>
-						<ul class="icons alt">
-							<li><a href="https://www.linkedin.com/in/khizar246/" target="_blank" class="icon brands alt">
-								<img data-src="images/linkedin.png" alt="LinkedIn Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
-								<span class="label">LinkedIn</span></a></li>
-							<li><a href="https://github.com/Khizar246" target="_blank" class="icon brands alt">
-								<img data-src="images/github.png" alt="Github Icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
-								<span class="label">GitHub</span></a></li>
-							<li><a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" class="icon brands alt">
-								<img data-src="images/tableau.png" alt="Tableau" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
-								<span class="label">Tableau</span></a></li>
-							<li><a href="mailto:khizerwork75@gmail.com" target="_blank" class="icon brands alt">
-								<img data-src="images/gmail.png" alt="Gmail icon" loading="lazy" class="lazy" style="width: 30px; height: 30px; vertical-align: middle;" />
-								<span class="label">Gmail</span></a></li>
-							<li><a href="assets/Resume.pdf" target="_blank" download class="icon brands alt">
-								<img data-src="images/resume.png" alt="Resume Icon" loading="lazy" class="lazy" style="width: 40px; height: 40px; vertical-align: middle;" />
-								<span class="label">Resume</span></a></li>
-						</ul>
-					</section>
-				</section>
-			</div>
-
-			<!-- Copyright -->
-			<div id="copyright">
-				<ul><li>&copy; Mohd Khizar</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
-			</div>
-
-		</div>
-
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-		<script>
-			document.addEventListener("DOMContentLoaded", function() {
-				var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
-
-				if ("IntersectionObserver" in window) {
-					let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-						entries.forEach(function(entry) {
-							if (entry.isIntersecting) {
-								let lazyImage = entry.target;
-								lazyImage.src = lazyImage.dataset.src;
-								lazyImage.classList.remove("lazy");
-								lazyImageObserver.unobserve(lazyImage);
-							}
-						});
-					});
-
-					lazyImages.forEach(function(lazyImage) {
-						lazyImageObserver.observe(lazyImage);
-					});
-				} else {
-					// Fallback for browsers that do not support IntersectionObserver
-					lazyImages.forEach(function(lazyImage) {
-						lazyImage.src = lazyImage.dataset.src;
-					});
-				}
-			});
-
-			function openLightbox(element) {
-				var lightbox = document.getElementById('lightbox');
-				var fullImage = lightbox.querySelector('img');
-				fullImage.src = element.getAttribute('data-full-image');
-				lightbox.style.display = 'block';
-				setTimeout(() => lightbox.classList.add('show'), 10);  // Add the show class after a slight delay
-			}
-
-			function closeLightbox() {
-				var lightbox = document.getElementById('lightbox');
-				lightbox.classList.remove('show');
-				setTimeout(() => lightbox.style.display = 'none', 500);  // Wait for the fade-out effect to complete
-			}
-		</script>
-
-	</body>
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
 </html>
