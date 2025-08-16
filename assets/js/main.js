@@ -133,29 +133,65 @@ function initScrollAnimations() {
     });
 }
 
-// ===== LIGHTBOX FUNCTIONALITY =====
+// ===== LIGHTBOX FUNCTIONALITY (FIXED) =====
 function initLightbox() {
     const lightbox = document.getElementById('lightbox');
+    if (!lightbox) {
+        console.error('Lightbox element not found');
+        return;
+    }
+    
     const lightboxImg = lightbox.querySelector('img');
     const lightboxClose = lightbox.querySelector('.lightbox-close');
-    const clickableImages = document.querySelectorAll('.clickable-image');
     
-    // Add click handlers to all clickable images
-    clickableImages.forEach(img => {
-        img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    if (!lightboxImg || !lightboxClose) {
+        console.error('Lightbox components not found');
+        return;
+    }
+    
+    // Function to open lightbox
+    function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || '';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
         
-        // Add keyboard support
-        img.setAttribute('tabindex', '0');
-        img.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openLightbox(img.src, img.alt);
+        // Focus management
+        lightboxClose.focus();
+        
+        // Prevent scrolling on mobile
+        document.addEventListener('touchmove', preventScroll, { passive: false });
+        
+        console.log('Lightbox opened for:', alt || src);
+    }
+    
+    // Function to close lightbox
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        
+        // Remove scroll prevention
+        document.removeEventListener('touchmove', preventScroll);
+        
+        // Clear image source to save memory
+        setTimeout(() => {
+            if (!lightbox.classList.contains('active')) {
+                lightboxImg.src = '';
+                lightboxImg.alt = '';
             }
-        });
-    });
+        }, 300);
+        
+        console.log('Lightbox closed');
+    }
+    
+    function preventScroll(e) {
+        e.preventDefault();
+    }
     
     // Close lightbox handlers
     lightboxClose.addEventListener('click', closeLightbox);
+    
+    // Close on background click
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
             closeLightbox();
@@ -164,43 +200,58 @@ function initLightbox() {
     
     // Keyboard handlers
     document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('active')) {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
+        if (lightbox.classList.contains('active') && e.key === 'Escape') {
+            closeLightbox();
         }
     });
     
-    function openLightbox(src, alt) {
-        lightboxImg.src = src;
-        lightboxImg.alt = alt;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        // Focus management
-        lightboxClose.focus();
-        
-        // Prevent scrolling
-        document.addEventListener('touchmove', preventScroll, { passive: false });
-    }
+    // Add click handlers to all clickable images
+    const clickableImages = document.querySelectorAll('.clickable-image');
+    console.log(`Found ${clickableImages.length} clickable images`);
     
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
+    clickableImages.forEach((img, index) => {
+        console.log(`Setting up image ${index}: ${img.alt || img.src}`);
         
-        // Remove scroll prevention
-        document.removeEventListener('touchmove', preventScroll);
+        // Make sure image is clickable
+        img.style.cursor = 'pointer';
+        img.setAttribute('tabindex', '0');
         
-        // Return focus to the image that was clicked
-        const activeImage = document.querySelector('.clickable-image:focus');
-        if (activeImage) {
-            activeImage.focus();
-        }
-    }
+        // Click handler
+        const clickHandler = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log(`Image clicked: ${this.alt || this.src}`);
+            openLightbox(this.src, this.alt);
+        };
+        
+        img.addEventListener('click', clickHandler);
+        
+        // Keyboard support
+        img.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(img.src, img.alt);
+            }
+        });
+    });
     
-    function preventScroll(e) {
-        e.preventDefault();
-    }
+    // Additional fix: Make project containers clickable as backup
+    const projectContainers = document.querySelectorAll('.project-image-container');
+    projectContainers.forEach(container => {
+        container.style.cursor = 'pointer';
+        container.addEventListener('click', function(e) {
+            // Only trigger if we didn't click directly on the image
+            const img = this.querySelector('.clickable-image');
+            if (img && (e.target === this || e.target.classList.contains('project-overlay'))) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log(`Container clicked for: ${img.alt || img.src}`);
+                openLightbox(img.src, img.alt);
+            }
+        });
+    });
+    
+    console.log('Lightbox initialization complete');
 }
 
 // ===== SMOOTH SCROLLING =====
