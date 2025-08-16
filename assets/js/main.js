@@ -133,7 +133,7 @@ function initScrollAnimations() {
     });
 }
 
-// ===== LIGHTBOX FUNCTIONALITY (FIXED) =====
+// ===== IMPROVED LIGHTBOX FUNCTIONALITY =====
 function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     if (!lightbox) {
@@ -149,17 +149,49 @@ function initLightbox() {
         return;
     }
     
-    // Function to open lightbox
+    // Function to open lightbox with improved image handling
     function openLightbox(src, alt) {
-        lightboxImg.src = src;
-        lightboxImg.alt = alt || '';
+        // Show lightbox immediately
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
+        
+        // Reset image state
+        lightboxImg.classList.remove('loaded');
+        lightboxImg.style.opacity = '0';
+        
+        // Create a new image to preload and get dimensions
+        const img = new Image();
+        img.onload = function() {
+            // Set the source
+            lightboxImg.src = src;
+            lightboxImg.alt = alt || '';
+            
+            // Calculate if image needs special handling
+            const imageAspectRatio = this.naturalWidth / this.naturalHeight;
+            const viewportAspectRatio = window.innerWidth / window.innerHeight;
+            
+            // Apply loaded class for fade in effect
+            setTimeout(() => {
+                lightboxImg.classList.add('loaded');
+                lightboxImg.style.opacity = '1';
+            }, 50);
+            
+            // Scroll to top of lightbox to ensure image is visible
+            lightbox.scrollTop = 0;
+        };
+        
+        img.onerror = function() {
+            console.error('Failed to load image:', src);
+            closeLightbox();
+        };
+        
+        // Start loading the image
+        img.src = src;
         
         // Focus management
         lightboxClose.focus();
         
-        // Prevent scrolling on mobile
+        // Prevent background scrolling
         document.addEventListener('touchmove', preventScroll, { passive: false });
         
         console.log('Lightbox opened for:', alt || src);
@@ -173,11 +205,13 @@ function initLightbox() {
         // Remove scroll prevention
         document.removeEventListener('touchmove', preventScroll);
         
-        // Clear image source to save memory
+        // Clear image source and reset state after transition
         setTimeout(() => {
             if (!lightbox.classList.contains('active')) {
                 lightboxImg.src = '';
                 lightboxImg.alt = '';
+                lightboxImg.classList.remove('loaded');
+                lightboxImg.style.opacity = '0';
             }
         }, 300);
         
@@ -191,17 +225,28 @@ function initLightbox() {
     // Close lightbox handlers
     lightboxClose.addEventListener('click', closeLightbox);
     
-    // Close on background click
+    // Close on background click (but not on image)
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
     
-    // Keyboard handlers
+    // Enhanced keyboard handlers
     document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('active') && e.key === 'Escape') {
-            closeLightbox();
+        if (lightbox.classList.contains('active')) {
+            switch(e.key) {
+                case 'Escape':
+                    closeLightbox();
+                    break;
+                case 'ArrowUp':
+                case 'ArrowDown':
+                case 'PageUp':
+                case 'PageDown':
+                    // Allow scrolling within lightbox
+                    e.stopPropagation();
+                    break;
+            }
         }
     });
     
@@ -250,6 +295,13 @@ function initLightbox() {
             }
         });
     });
+    
+    // Handle window resize to adjust lightbox
+    window.addEventListener('resize', debounce(() => {
+        if (lightbox.classList.contains('active')) {
+            lightbox.scrollTop = 0;
+        }
+    }, 250));
     
     console.log('Lightbox initialization complete');
 }
