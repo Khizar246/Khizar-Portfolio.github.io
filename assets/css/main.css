@@ -664,6 +664,7 @@ section.visible {
     justify-content: center;
     opacity: 0;
     transition: opacity var(--transition-base);
+    pointer-events: none;
 }
 
 .project-card:hover .project-overlay {
