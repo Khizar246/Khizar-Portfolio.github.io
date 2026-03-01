@@ -1,12 +1,8 @@
 # 🚀 Modern Data Analyst Portfolio
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://your-username.github.io/portfolio)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red.svg)](https://github.com/Khizar246)
-
 > A modern, responsive portfolio website showcasing data analysis projects, technical skills, and professional experience.
 
-![Portfolio Preview](images/IT%20Career%20Insights%20Dashboard.png)
+![Portfolio Preview](images/<img width="1920" height="9123" alt="portfolio-preview png" src="https://github.com/user-attachments/assets/883dac01-4df9-4685-9257-f3fc9ee047a7" />)
 
 ## ✨ Features
 
