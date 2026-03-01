@@ -2,8 +2,6 @@
 
 > A modern, responsive portfolio website showcasing data analysis projects, technical skills, and professional experience.
 
-![Portfolio Preview](images/<img width="1920" height="9123" alt="portfolio-preview png" src="https://github.com/user-attachments/assets/883dac01-4df9-4685-9257-f3fc9ee047a7" />)
-
 ## ✨ Features
 
 - 🎨 **Modern Design**: Clean, professional interface with gradient accents and smooth animations
@@ -60,71 +58,7 @@ portfolio/
     └── [skill icons]
 ```
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-No build tools or dependencies required! This is a static website that runs directly in the browser.
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Khizar246/portfolio.git
-   ```
-
-2. **Navigate to the project directory**
-   ```bash
-   cd portfolio
-   ```
-
-3. **Open in browser**
-   - Simply open `index.html` in your web browser
-   - Or use a local server (recommended):
-   ```bash
-   # Using Python 3
-   python -m http.server 8000
-   
-   # Or using Node.js with http-server
-   npx http-server
-   ```
-
-4. **Access the portfolio**
-   - Open `http://localhost:8000` in your browser
-
-### Deployment
-
-#### GitHub Pages
-
-1. **Enable GitHub Pages**
-   - Go to repository Settings → Pages
-   - Select `main` branch as source
-   - Save and wait for deployment
-
-2. **Access your site**
-   - Your portfolio will be available at `https://your-username.github.io/repository-name`
-
-#### Other Platforms
-
-This portfolio can be deployed to any static hosting service:
-- **Netlify**: Drag and drop the folder
-- **Vercel**: Import from GitHub
-- **Firebase Hosting**: Use Firebase CLI
-- **AWS S3**: Upload as static website
-
 ## 🎨 Customization Guide
-
-### Changing Colors
-
-Edit CSS variables in `assets/css/main.css`:
-
-```css
-:root {
-    --primary-color: #667eea;        /* Main brand color */
-    --secondary-color: #764ba2;      /* Accent color */
-    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-```
 
 ### Adding Projects
 
@@ -153,36 +87,6 @@ Edit CSS variables in `assets/css/main.css`:
     </div>
 </article>
 ```
-
-### Updating Content
-
-- **Personal Info**: Edit the hero section in `index.html`
-- **About Text**: Modify the about section content
-- **Skills**: Update skill tags in the skills section
-- **Contact Info**: Change email, LinkedIn, GitHub links
-- **Resume**: Replace `assets/Resume.pdf` with your resume
-
-### Changing Fonts
-
-Update the Google Fonts import in HTML files:
-
-```html
-<link href="https://fonts.googleapis.com/css2?family=Your-Font:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-```
-
-Then update CSS:
-
-```css
-:root {
-    --font-primary: 'Your-Font', sans-serif;
-}
-```
-
-## 📱 Responsive Breakpoints
-
-- **Desktop**: 1200px and above
-- **Tablet**: 768px - 1199px
-- **Mobile**: 320px - 767px
 
 ## 🎯 Key Sections
 
@@ -217,71 +121,11 @@ Then update CSS:
 - Social media links
 - Professional profile connections
 
-## 🔧 Browser Support
-
-- ✅ Chrome (recommended)
-- ✅ Firefox
-- ✅ Safari
-- ✅ Edge
-- ✅ Opera
-
-**Note**: Modern browsers with ES6+ support required
-
-## ⚡ Performance
-
-- **Lighthouse Score**: 95+ across all metrics
-- **Load Time**: < 2 seconds on average connection
-- **Optimizations**: 
-  - Lazy loading for images
-  - Minified assets (optional)
-  - Efficient CSS and JavaScript
-  - No external dependencies beyond fonts and icons
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👤 Author
-
-**Mohd Khizar**
-
-- 🌐 Portfolio: [https://your-username.github.io/portfolio](https://your-username.github.io/portfolio)
-- 💼 LinkedIn: [@khizar246](https://www.linkedin.com/in/khizar246/)
-- 🐙 GitHub: [@Khizar246](https://github.com/Khizar246)
-- 📧 Email: khizerwork75@gmail.com
-
-## 🌟 Acknowledgments
-
-- Design inspiration from modern web trends
-- Icons by [Font Awesome](https://fontawesome.com/)
-- Fonts by [Google Fonts](https://fonts.google.com/)
-- Template structure by HTML5 UP (heavily customized)
-
 ## 📊 Portfolio Stats
 
-- **Total Projects**: 6+ featured projects
+- **Total Projects**: 8+ featured projects
 - **Technologies Showcased**: 15+ tools and languages
-- **Experience**: 1.8+ years in Data Analysis
+- **Experience**: 2+ years in Data Analysis
 - **Certifications**: Microsoft Azure DP-900
 
 ---
-
-<div align="center">
-
-### ⭐ Star this repo if you find it helpful!
-
-Made with ❤️ and ☕ by [Mohd Khizar](https://github.com/Khizar246)
-
-**[View Live Demo](https://your-username.github.io/portfolio)** | **[Report Bug](https://github.com/Khizar246/portfolio/issues)** | **[Request Feature](https://github.com/Khizar246/portfolio/issues)**
-
-</div>
