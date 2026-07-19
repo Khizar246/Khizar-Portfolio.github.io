@@ -1,557 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohd Khizar - Data Analyst Portfolio</title>
-    <meta name="description" content="Data Analyst with 2+ years experience at EY, specializing in Python, SQL, Power BI, and machine learning solutions.">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohd Khizar — Data & Risk Analytics</title>
+    <meta name="description" content="Mohd Khizar — Data & Analytics professional at EY. Risk analyst who builds high-performance data tools used by EY teams. Python, Polars, SQL, Power BI, FastAPI, React." />
+    <meta name="author" content="Mohd Khizar" />
+    <meta property="og:title" content="Mohd Khizar — Data & Risk Analytics" />
+    <meta property="og:description" content="High-performance data tools for risk analytics. Built at EY." />
+    <meta property="og:image" content="images/portfolio-preview.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- Ambient background -->
+    <canvas class="bg-canvas" id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-glow" id="bg-glow" aria-hidden="true"></div>
 
-    <!-- Navigation Menu Toggle -->
-    <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation menu">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Navigation Menu -->
-    <nav id="nav-menu" class="nav-menu">
-        <div class="nav-header">
-            <h3>Navigation</h3>
-            <button id="nav-close" class="nav-close" aria-label="Close navigation">
-                <i class="fas fa-times"></i>
-            </button>
+    <!-- Header -->
+    <header class="header" id="header">
+        <a href="#top" class="logo">Mohd<span>Khizar</span><i class="logo-dot"></i></a>
+        <nav class="nav" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#work">Projects</a>
+            <a href="#stack">Stack</a>
+            <a href="#experience">Experience</a>
+            <a href="#certs">Certifications</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="header-cta">
+            <a href="assets/Resume.pdf" target="_blank" rel="noopener" class="btn btn-outline sm">My résumé</a>
+            <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home" data-section="home">Home</a></li>
-            <li><a href="#about" data-section="about">About</a></li>
-            <li><a href="#skills" data-section="skills">Skills</a></li>
-            <li><a href="#projects" data-section="projects">Projects</a></li>
-            <li><a href="#certifications" data-section="certifications">Certifications</a></li>
-            <li><a href="#contact" data-section="contact">Contact</a></li>
-        </ul>
-    </nav>
+    </header>
 
-    <!-- Navigation Overlay -->
-    <div id="nav-overlay" class="nav-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="#about">About</a>
+        <a href="#work">Projects</a>
+        <a href="#stack">Stack</a>
+        <a href="#experience">Experience</a>
+        <a href="#certs">Certifications</a>
+        <a href="#contact">Contact</a>
+        <a href="assets/Resume.pdf" target="_blank" rel="noopener" class="btn btn-primary">My résumé</a>
+    </div>
 
-    <!-- Main Container -->
-    <main class="container">
-        <!-- Hero Section -->
-        <section id="home" class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="gradient-text">Mohd Khizar</span>
-                    <span class="hero-subtitle">Data Analyst & Business Intelligence Specialist</span>
-                </h1>
-                <p class="hero-description">
-                    Transforming raw data into actionable business insights with 2+ years of experience at EY. 
-                    I specialize in advanced analytics, machine learning, and building scalable data solutions 
-                    that drive strategic decision-making across enterprise environments.
+    <main id="top">
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="hero">
+            <div class="hero-text">
+                <p class="hello rv"><span class="pill-avail"><i></i>Serving notice — available immediately</span></p>
+                <h1 class="role rv" data-d="1">Analytics you can<br><span class="accent-grad">put in front of an auditor.</span></h1>
+                <p class="hero-desc rv" data-d="2">
+                    I'm <strong>Mohd Khizar</strong> — nearly 3 years as a <strong>risk analyst at EY</strong>.
+                    Much of that work was manual and Excel-heavy — so I built the data tools that automate it,
+                    processing <strong>3M+ records and 100K+ users in seconds</strong>, now used by EY teams.
                 </p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        View My Work
-                    </a>
+                <div class="hero-btns rv" data-d="3">
+                    <a href="#work" class="btn btn-primary">See my work</a>
+                    <a href="#contact" class="btn btn-outline">Get in touch</a>
+                </div>
+            </div>
+
+            <!-- Animated compliance / audit panel -->
+            <div class="hero-panel rv" data-d="2" role="img" aria-label="A metrics panel summarizing the scale of the automation tools built at EY.">
+                <div class="panel-bar">
+                    <span class="pb-dot"></span><span class="pb-dot"></span><span class="pb-dot"></span>
+                    <span class="pb-title">tooling.metrics</span>
+                    <span class="pb-live"><i></i>live</span>
+                </div>
+                <div class="panel-body">
+                    <div class="pk-row">
+                        <div class="pk">
+                            <span class="pk-num" data-c="3" data-s="M+">0</span>
+                            <span class="pk-cap">records processed</span>
+                        </div>
+                        <div class="pk">
+                            <span class="pk-num" data-c="100" data-s="K+">0</span>
+                            <span class="pk-cap">users covered</span>
+                        </div>
+                    </div>
+                    <div class="pk-row">
+                        <div class="pk">
+                            <span class="pk-num" data-c="75" data-s="%">0</span>
+                            <span class="pk-cap">manual effort removed</span>
+                        </div>
+                        <div class="pk">
+                            <span class="pk-num" data-c="40" data-s="%">0</span>
+                            <span class="pk-cap">fewer false flags</span>
+                        </div>
+                    </div>
+                    <ul class="panel-checks">
+                        <li class="chk"><span class="chk-i">✓</span> Built for EY teams</li>
+                        <li class="chk"><span class="chk-i">✓</span> Audit-ready Excel exports</li>
+                        <li class="chk"><span class="chk-i">✓</span> Explainable, categorised outputs</li>
+                    </ul>
+                    <div class="panel-status"><span class="ps-badge">ADOPTED</span> by EY teams · risk &amp; controls tooling</div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="section-container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            I'm a passionate Data Analyst with a proven track record of delivering impactful business solutions 
-                            through data-driven insights. Successfully managed enterprise-scale projects, 
-                            optimized complex SQL queries for millions of records, and built interactive dashboards 
-                            that have influenced critical business decisions.
-                        </p>
-                        <p>
-                            My expertise spans the entire data lifecycle - from data collection and cleaning to 
-                            advanced statistical analysis and machine learning model deployment. I'm particularly 
-                            skilled at translating complex technical findings into clear, actionable recommendations 
-                            for stakeholders across all organizational levels.
-                        </p>
+        <!-- ===== ABOUT ===== -->
+        <section class="section about" id="about">
+            <div class="wrap">
+                <div class="sec-head center rv">
+                    <span class="tag">About me</span>
+                    <h2>I turned a manual consulting job into a <span class="accent">data engineering problem.</span></h2>
+                    <p>Risk analyst by day — and the data tools I built to automate the work</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-services rv">
+                        <div class="svc">
+                            <span class="svc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>
+                            <div><h4>Risk &amp; compliance domain</h4><p>I know what auditors actually need</p></div>
+                        </div>
+                        <div class="svc">
+                            <span class="svc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
+                            <div><h4>High-scale analytics</h4><p>3M+ records, answers in seconds</p></div>
+                        </div>
+                        <div class="svc">
+                            <span class="svc-ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="10" r="1.4" fill="currentColor"/><circle cx="15" cy="10" r="1.4" fill="currentColor"/><path d="M9 15h6"/></svg></span>
+                            <div><h4>Applied AI for audit</h4><p>Explainable, regulator-relevant</p></div>
+                        </div>
                         <div class="about-stats">
-                            <div class="stat-item">
-                                <h3>2+</h3>
-                                <p>Years Experience</p>
-                            </div>
-                            <div class="stat-item">
-                                <h3>10+</h3>
-                                <p>Projects Completed</p>
-                            </div>
-                            <div class="stat-item">
-                                <h3>1M+</h3>
-                                <p>Records Processed</p>
-                            </div>
+                            <div class="astat"><span class="an" data-c="3" data-s="">0</span><span class="ac">Years at EY</span></div>
+                            <div class="astat"><span class="an" data-c="3" data-s="M+">0</span><span class="ac">Records processed</span></div>
+                            <div class="astat"><span class="an" data-c="100" data-s="K+">0</span><span class="ac">Users covered</span></div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="skills-section">
-            <div class="section-container">
-                <h2 class="section-title">Technical Expertise</h2>
-                <p class="section-subtitle">Comprehensive skill set spanning data analysis, visualization, and machine learning</p>
-                
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Programming & Analytics</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">
-                                <img src="images/python.png" alt="Python" />
-                                Python
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/sql.png" alt="SQL" />
-                                SQL
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/statistics.png" alt="Statistics" />
-                                Statistics
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/ml.png" alt="Machine Learning" />
-                                Machine Learning
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Visualization & BI</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">
-                                <img src="images/tableau.png" alt="Tableau" />
-                                Tableau
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/powerbi.png" alt="Power BI" />
-                                Power BI
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/excel.png" alt="Excel" />
-                                Advanced Excel
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/streamlit.png" alt="Streamlit" />
-                                Streamlit
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Database & Cloud</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">
-                                <img src="images/mysql.png" alt="MySQL" />
-                                MySQL
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/Snowflake.png" alt="Snowflake" />
-                                Snowflake
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/web_scraping.png" alt="Web Scraping" />
-                                Web Scraping
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/selenium.png" alt="Selenium" />
-                                Selenium
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/Azure.png" alt="Azure" />
-                                Azure
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Soft Skills</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">
-                                <img src="images/problem_solving.png" alt="Problem Solving" />
-                                Problem Solving
-                            </span>
-                            <span class="skill-tag">
-                                <img src="images/teamwork.png" alt="Teamwork" />
-                                Team Leadership
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects-section">
-            <div class="section-container">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Showcasing impactful data solutions and analytical insights</p>
-
-                <!-- Featured Project -->
-                <div class="featured-project">
-                    <div class="project-content">
-                        <div class="project-info">
-                            <span class="project-tag">Featured Project</span>
-                            <h3>TalkToData Engine: Decentralizing Insights with AI</h3>
-                            <p>
-                                Engineered an intelligent Text-to-SQL platform that 
-                                eliminates the "data bottleneck" by enabling non-technical stakeholders to query complex relational 
-                                databases using plain English. Designed a <strong>schema-aware query generation system</strong> that 
-                                leverages database metadata to produce accurate, optimized SQL queries in real time.
-                            </p>
-                            <p>
-                                Architected a scalable backend using <strong>FastAPI</strong> integrated with <strong>DeepSeek-Coder 6.7B</strong> 
-                                for advanced intent parsing and contextual SQL synthesis. Implemented <strong>SQLGlot-based AST validation</strong> 
-                                to ensure syntactic correctness. Enforced strict <strong>read-only execution guardrails</strong> to maintain enterprise-grade security and data integrity.
-                            </p>
-                            <p>
-                                Built a modern, responsive interface featuring real-time query previews, execution workflows, and transparent logic explanations to enhance 
-                                interpretability and user trust.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">FastAPI</span>
-                                <span class="tech-tag">React.js</span>
-                                <span class="tech-tag">DeepSeek-Coder 6.7B</span>
-                                <span class="tech-tag">SQLGlot (AST Parsing)</span>
-                                <span class="tech-tag">Tailwind CSS</span>
-                                <span class="tech-tag">PostgreSQL/SQLite</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/Khizar246/AI_Agents/tree/main/Text_To_SQL" target="_blank" class="btn btn-secondary">
-                                    <i class="fab fa-github"></i>
-                                    Source Code
-                                </a>
-                            </div>
-                        </div>
-                        <div class="project-image">
-                            <img src="images/Text_To_SQL.png" alt="Text To SQL Dashboard" class="clickable-image" />
-                        </div>
-                    </div>
-                </div>
-                <!-- Other Projects Grid -->
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-image-container">
-                            <img src="images/Orders Dashboard.png" alt="Enterprise Sales Analytics Dashboard" class="clickable-image" />
-                            <div class="project-overlay">
-                                <h4>Enterprise-Scale Sales Analytics</h4>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Enterprise-Scale Sales Data Analytics</h4>
-                            <p>
-                                Built a scalable data warehouse with 1M+ transactional records across multiple 
-                                fact and dimension tables. Optimized 20+ complex SQL queries for ETL operations 
-                                in Snowflake and created executive-level Power BI dashboards.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">SQL</span>
-                                <span class="tech-tag">Snowflake</span>
-                                <span class="tech-tag">Power BI</span>
-                                <span class="tech-tag">ETL</span>
-                            </div>
-                            <a href="https://github.com/Khizar246/Analysis_Projects/tree/main/Enterprise_Scale_Order_Data_Analysis" target="_blank" class="btn btn-outline">
-                                <i class="fab fa-github"></i>
-                                View Project
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image-container">
-                            <img src="images/IT Career Insights Dashboard.png" alt="IT Career Insights Dashboard" class="clickable-image" />
-                            <div class="project-overlay">
-                                <h4>IT Career Insights Dashboard</h4>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>IT Career Insights Dashboard</h4>
-                            <p>
-                                Developed a comprehensive career analytics platform that processes and analyzes 36,000+ job postings using Python to extract insights on industry trends, in-demand skills, and salary patterns, and delivered these findings through an interactive web dashboard that enables users to explore salary benchmarks, skill demand, and career progression pathways through intuitive visualizations.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Data Analysis</span>
-                                <span class="tech-tag">Web Development</span>
-                                <span class="tech-tag">Visualization</span>
-                            </div>
-                            <a href="https://khizar246.github.io/Indian_IT_Job_Trends.github.io/" target="_blank" class="btn btn-outline">
-                                <i class="fab fa-github"></i>
-                                View Project
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image-container">
-                            <img src="images/Audit Agent.png" alt="AI Audit Agent Interface" class="clickable-image" />
-                            <div class="project-overlay">
-                                <h4>AI Audit Agent</h4>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>AI-Powered Audit Agent</h4>
-                            <p>
-                                Developed an intelligent auditing system using NLP and Large Language Models 
-                                to automate document compliance reviews. Integrated LangChain and Mistral LLM 
-                                for semantic document understanding and automated report generation.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">NLP</span>
-                                <span class="tech-tag">LLM</span>
-                                <span class="tech-tag">Streamlit</span>
-                            </div>
-                            <a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_Audit_Agent" target="_blank" class="btn btn-outline">
-                                <i class="fab fa-github"></i>
-                                View Project
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image-container">
-                            <img src="images/News Agent.png" alt="AI News Research Agent" class="clickable-image" />
-                            <div class="project-overlay">
-                                <h4>AI News Research Agent</h4>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>AI News Research Assistant</h4>
-                            <p>
-                                Built an intelligent news analysis platform using FAISS vector databases and 
-                                semantic search capabilities. Implemented real-time article extraction and 
-                                summarization with privacy-focused local LLM deployment.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">FAISS</span>
-                                <span class="tech-tag">LangChain</span>
-                                <span class="tech-tag">Ollama</span>
-                            </div>
-                            <a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_News_Research_Agent" target="_blank" class="btn btn-outline">
-                                <i class="fab fa-github"></i>
-                                View Project
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image-container">
-                            <img src="images/Finance_Dashboard.png" alt="Personal Finance Dashboard" class="clickable-image" />
-                            <div class="project-overlay">
-                                <h4>Finance Analytics Dashboard</h4>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Interactive Finance Dashboard</h4>
-                            <p>
-                                Designed a comprehensive personal finance analytics platform with dynamic KPIs, 
-                                trend analysis, and predictive insights. Implemented advanced Power BI features 
-                                for budget optimization and expense categorization.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Power BI</span>
-                                <span class="tech-tag">DAX</span>
-                                <span class="tech-tag">Financial Analysis</span>
-                            </div>
-                            <a href="https://github.com/Khizar246/PowerBI_Projects/tree/main/Finance%20Dashboard" target="_blank" class="btn btn-outline">
-                                <i class="fab fa-github"></i>
-                                View Project
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image-container">
-                            <img src="images/Sales Analysis Dashboard.png" alt="Sales Analysis Dashboard" class="clickable-image" />
-                            <div class="project-overlay">
-                                <h4>Sales Analysis Dashboard</h4>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Advanced Sales Analytics</h4>
-                            <p>
-                                Leveraged Tableau's advanced visualization capabilities to create an intuitive 
-                                sales performance dashboard. Implemented geographic analysis, trend forecasting, 
-                                and customer segmentation for strategic decision-making.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Tableau</span>
-                                <span class="tech-tag">Data Visualization</span>
-                                <span class="tech-tag">Sales Analytics</span>
-                            </div>
-                            <a href="https://public.tableau.com/views/InteractiveSalesDashboard_16879807819150/SalesDasboardLandingPage" target="_blank" class="btn btn-outline">
-                                 <i class="fab fa-github"></i>
-                                View Project
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image-container">
-                            <img src="images/Spending Habits.png" alt="Generational Spending Analysis" class="clickable-image" />
-                            <div class="project-overlay">
-                                <h4>Generational Spending Analysis</h4>
-                            </div>
-                        </div>
-                        <div class="project-details">
-                            <h4>Consumer Behavior Analytics</h4>
-                            <p>
-                                Conducted comprehensive analysis of spending patterns across different generations 
-                                using statistical methods and data visualization. Identified key behavioral trends 
-                                and market opportunities for targeted marketing strategies.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Tableau</span>
-                                <span class="tech-tag">Statistical Analysis</span>
-                                <span class="tech-tag">Market Research</span>
-                            </div>
-                            <a href="https://public.tableau.com/views/SpendingHabitsOfDifferentGenerations/Dashboard1" target="_blank" class="btn btn-outline">
-                                 <i class="fab fa-github"></i>
-                                View Project
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="certifications-section">
-            <div class="section-container">
-                <h2 class="section-title">Professional Certifications</h2>
-                <p class="section-subtitle">Validated expertise in cloud technologies and data fundamentals</p>
-                
-                <div class="certifications-grid">
-                    <div class="certification-card">
-                        <div class="certification-info">
-                            <h3>Microsoft Certified: Azure Data Fundamentals</h3>
-                            <p class="certification-code">DP-900</p>
-                            <p class="certification-description">
-                                Validates foundational knowledge of cloud concepts, core Azure services, 
-                                and essential data concepts including relational and non-relational data, 
-                                big data, and analytics workloads on Microsoft Azure.
-                            </p>
-                            <div class="certification-skills">
-                                <span class="skill-tag">Azure Cloud</span>
-                                <span class="skill-tag">Data Management</span>
-                                <span class="skill-tag">Analytics</span>
-                                <span class="skill-tag">Cloud Architecture</span>
-                            </div>
-                        </div>
-                        <div class="certification-image">
-                            <img src="images/DP900_Certification.png" alt="Microsoft Azure Data Fundamentals DP-900 Certification" class="clickable-image" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="section-container">
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="section-subtitle">Ready to discuss data solutions and collaboration opportunities</p>
-                
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Get In Touch</h3>
+                    <div class="about-copy rv" data-d="1">
                         <p>
-                            I'm always interested in discussing new opportunities, data challenges, 
-                            and potential collaborations. Whether you're looking for data analysis expertise, 
-                            business intelligence solutions, or consulting on analytics projects, let's connect!
+                            <strong>At EY,</strong> I work as a risk analyst — reviewing enterprise access and
+                            financial-controls data for risk and compliance issues. That work runs on large,
+                            messy datasets and used to mean days of manual Excel — so I automated it:
+                            Python/Polars web apps processing <strong>3M+ records and 100K+ users in
+                            seconds</strong>, cutting manual analysis by <strong>~75%</strong> and
+                            false-positive noise by <strong>~40%</strong>. Now used by EY teams.
                         </p>
-                        
-                        <div class="contact-methods">
-                            <a href="mailto:khizerwork75@gmail.com" class="contact-method">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h4>Email</h4>
-                                    <p>khizerwork75@gmail.com</p>
-                                </div>
-                            </a>
-                            
-                            <a href="https://www.linkedin.com/in/khizar246/" target="_blank" class="contact-method">
-                                <div class="contact-icon">
-                                    <i class="fab fa-linkedin"></i>
-                                </div>
-                                <div class="contact-details">
-                                    <h4>LinkedIn</h4>
-                                    <p>Connect professionally</p>
-                                </div>
-                            </a>
+                        <p>
+                            <strong>On my own,</strong> I build applied-AI tools and dashboards — a secure
+                            text-to-SQL engine, a private research assistant, BI dashboards. Different domains,
+                            same habit: <strong>take something manual and messy, ship a tool that makes it fast.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECTS ===== -->
+        <section class="section work" id="work">
+            <div class="wrap">
+                <div class="sec-head center rv">
+                    <span class="tag">My work</span>
+                    <h2>Projects</h2>
+                    <p>Applied-AI tools and dashboards I build on my own.</p>
+                </div>
+
+                <article class="proj rv">
+                    <div class="proj-body">
+                        <span class="proj-cat">Personal project · Secure by design</span>
+                        <h3>TalkToData — text-to-SQL, done safely</h3>
+                        <div class="chips"><span>Python</span><span>FastAPI</span><span>React</span><span>SQLGlot</span><span>DeepSeek-Coder</span></div>
+                        <p>Plenty of tools turn English into SQL. Mine is built for the enterprise: it reads the schema, generates optimized SQL in real time, validates it with <strong>SQLGlot AST parsing</strong>, and runs behind strict <strong>read-only guardrails</strong> — safe enough to hand a non-technical stakeholder without risking the database.</p>
+                        <div class="proj-links">
+                            <a href="https://github.com/Khizar246/AI_Agents/tree/main/Text_To_SQL" target="_blank" rel="noopener" class="btn btn-primary sm">View GitHub</a>
+                            <button class="link-arrow" data-full="images/Text_To_SQL.png">View project <span>↗</span></button>
                         </div>
                     </div>
-                    
-                    <div class="social-links">
-                        <h3>Professional Profiles</h3>
-                        <div class="social-grid">
-                            <a href="https://www.linkedin.com/in/khizar246/" target="_blank" class="social-link">
-                                <img src="images/linkedin.png" alt="LinkedIn" />
-                                <span>LinkedIn</span>
-                            </a>
-                            <a href="https://github.com/Khizar246" target="_blank" class="social-link">
-                                <img src="images/github.png" alt="GitHub" />
-                                <span>GitHub</span>
-                            </a>
-                            <a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" class="social-link">
-                                <img src="images/tableau.png" alt="Tableau Public" />
-                                <span>Tableau Public</span>
-                            </a>
-                            <a href="mailto:khizerwork75@gmail.com" class="social-link">
-                                <img src="images/gmail.png" alt="Email" />
-                                <span>Email</span>
-                            </a>
+                    <button class="proj-media" data-full="images/Text_To_SQL.png" aria-label="Enlarge TalkToData">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/Text_To_SQL.png" alt="TalkToData interface" loading="lazy" /></span>
+                    </button>
+                </article>
+
+                <article class="proj rv">
+                    <button class="proj-media" data-full="images/Orders Dashboard.png" aria-label="Enlarge sales analytics">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/Orders Dashboard.png" alt="Enterprise sales analytics dashboard" loading="lazy" /></span>
+                    </button>
+                    <div class="proj-body">
+                        <span class="proj-cat">Analytics engineering · 1M+ rows</span>
+                        <h3>Enterprise sales analytics</h3>
+                        <div class="chips"><span>SQL</span><span>Snowflake</span><span>Power BI</span><span>ETL</span></div>
+                        <p>A star-schema warehouse over 1M+ transactions with 20+ tuned SQL/ETL queries in Snowflake, surfaced in executive Power BI dashboards for strategic decisions.</p>
+                        <div class="proj-links">
+                            <a href="https://github.com/Khizar246/Analysis_Projects/tree/main/Enterprise_Scale_Order_Data_Analysis" target="_blank" rel="noopener" class="btn btn-primary sm">View GitHub</a>
+                            <button class="link-arrow" data-full="images/Orders Dashboard.png">View project <span>↗</span></button>
                         </div>
                     </div>
+                </article>
+
+                <article class="proj rv">
+                    <div class="proj-body">
+                        <span class="proj-cat">Product analytics · 36K postings</span>
+                        <h3>IT career insights</h3>
+                        <div class="chips"><span>Python</span><span>EDA</span><span>Web app</span><span>Viz</span></div>
+                        <p>Analyzed 36,000+ job postings in Python to map skill demand, salary benchmarks, and career paths — shipped as an interactive web dashboard anyone can explore.</p>
+                        <div class="proj-links">
+                            <a href="https://khizar246.github.io/Indian_IT_Job_Trends.github.io/" target="_blank" rel="noopener" class="btn btn-primary sm">View live</a>
+                            <button class="link-arrow" data-full="images/IT Career Insights Dashboard.png">View project <span>↗</span></button>
+                        </div>
+                    </div>
+                    <button class="proj-media" data-full="images/IT Career Insights Dashboard.png" aria-label="Enlarge IT career insights">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/IT Career Insights Dashboard.png" alt="IT career insights dashboard" loading="lazy" /></span>
+                    </button>
+                </article>
+
+                <article class="proj rv">
+                    <button class="proj-media" data-full="images/News Agent.png" aria-label="Enlarge news research agent">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/News Agent.png" alt="AI news research agent" loading="lazy" /></span>
+                    </button>
+                    <div class="proj-body">
+                        <span class="proj-cat">Applied AI · Private LLM</span>
+                        <h3>News research assistant</h3>
+                        <div class="chips"><span>Python</span><span>FAISS</span><span>LangChain</span><span>Ollama</span></div>
+                        <p>A privacy-first research tool using FAISS vector search and a local LLM for real-time article extraction, semantic search, and summarization — no data leaves the machine.</p>
+                        <div class="proj-links">
+                            <a href="https://github.com/Khizar246/AI_Agents/tree/main/AI_News_Research_Agent" target="_blank" rel="noopener" class="btn btn-primary sm">View GitHub</a>
+                            <button class="link-arrow" data-full="images/News Agent.png">View project <span>↗</span></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="proj rv">
+                    <div class="proj-body">
+                        <span class="proj-cat">BI · DAX</span>
+                        <h3>Finance analytics dashboard</h3>
+                        <div class="chips"><span>Power BI</span><span>DAX</span><span>Finance</span></div>
+                        <p>A personal-finance model with dynamic KPIs, trend analysis, and expense categorization built on advanced Power BI and DAX measures.</p>
+                        <div class="proj-links">
+                            <a href="https://github.com/Khizar246/PowerBI_Projects/tree/main/Finance%20Dashboard" target="_blank" rel="noopener" class="btn btn-primary sm">View GitHub</a>
+                            <button class="link-arrow" data-full="images/Finance_Dashboard.png">View project <span>↗</span></button>
+                        </div>
+                    </div>
+                    <button class="proj-media" data-full="images/Finance_Dashboard.png" aria-label="Enlarge finance dashboard">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/Finance_Dashboard.png" alt="Finance analytics dashboard" loading="lazy" /></span>
+                    </button>
+                </article>
+
+                <article class="proj rv">
+                    <button class="proj-media" data-full="images/Sales Analysis Dashboard.png" aria-label="Enlarge Tableau sales dashboard">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/Sales Analysis Dashboard.png" alt="Tableau sales analysis dashboard" loading="lazy" /></span>
+                    </button>
+                    <div class="proj-body">
+                        <span class="proj-cat">Data viz · Tableau</span>
+                        <h3>Sales analytics dashboard</h3>
+                        <div class="chips"><span>Tableau</span><span>Forecasting</span><span>Segmentation</span></div>
+                        <p>An interactive Tableau dashboard with geographic analysis, trend forecasting, and customer segmentation for strategic sales decisions.</p>
+                        <div class="proj-links">
+                            <a href="https://public.tableau.com/views/InteractiveSalesDashboard_16879807819150/SalesDasboardLandingPage" target="_blank" rel="noopener" class="btn btn-primary sm">View live</a>
+                            <button class="link-arrow" data-full="images/Sales Analysis Dashboard.png">View project <span>↗</span></button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===== TECH STACK ===== -->
+        <section class="section stack" id="stack">
+            <div class="wrap">
+                <div class="sec-head center rv">
+                    <span class="tag">Toolkit</span>
+                    <h2>The stack</h2>
+                    <p>What I reach for, grouped by where it sits in the data pipeline.</p>
+                </div>
+                <div class="stack-grid">
+                    <div class="stack-col rv">
+                        <h4><span class="sc-idx">01</span>Query &amp; language</h4>
+                        <ul class="tiles">
+                            <li><span class="ti"><img src="images/python.png" alt=""></span>Python</li>
+                            <li><span class="ti"><img src="images/sql.png" alt=""></span>SQL</li>
+                            <li><span class="ti"><img src="images/mysql.png" alt=""></span>MySQL</li>
+                            <li><span class="ti"><img src="images/statistics.png" alt=""></span>Statistics</li>
+                        </ul>
+                    </div>
+                    <div class="stack-col rv" data-d="1">
+                        <h4><span class="sc-idx">02</span>Model &amp; warehouse</h4>
+                        <ul class="tiles">
+                            <li><span class="ti"><img src="images/Snowflake.png" alt=""></span>Snowflake</li>
+                            <li><span class="ti"><img src="images/Azure.png" alt=""></span>Azure</li>
+                            <li><span class="ti"><img src="images/ml.png" alt=""></span>Machine Learning</li>
+                            <li><span class="ti"><img src="images/selenium.png" alt=""></span>Selenium</li>
+                        </ul>
+                    </div>
+                    <div class="stack-col rv" data-d="2">
+                        <h4><span class="sc-idx">03</span>Visualize &amp; ship</h4>
+                        <ul class="tiles">
+                            <li><span class="ti"><img src="images/powerbi.png" alt=""></span>Power BI</li>
+                            <li><span class="ti"><img src="images/tableau.png" alt=""></span>Tableau</li>
+                            <li><span class="ti"><img src="images/excel.png" alt=""></span>Advanced Excel</li>
+                            <li><span class="ti"><img src="images/streamlit.png" alt=""></span>Streamlit</li>
+                        </ul>
+                    </div>
+                    <div class="stack-col rv" data-d="3">
+                        <h4><span class="sc-idx">04</span>Build &amp; govern</h4>
+                        <ul class="tiles">
+                            <li><span class="ti"><img src="images/web_scraping.png" alt=""></span>FastAPI &amp; React</li>
+                            <li><span class="ti"><img src="images/problem_solving.png" alt=""></span>GRC &amp; risk</li>
+                            <li><span class="ti"><img src="images/teamwork.png" alt=""></span>Stakeholder comms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXPERIENCE ===== -->
+        <section class="section experience" id="experience">
+            <div class="wrap exp-grid">
+                <div class="exp-left rv">
+                    <span class="tag">Journey</span>
+                    <h2>Professional <span class="accent">experience</span></h2>
+                    <p>Nearly three years in Oracle risk consulting — and the internal tooling I built along the way.</p>
+                </div>
+                <ol class="timeline rv" data-d="1">
+                    <li>
+                        <span class="tl-dot coral"></span>
+                        <span class="tl-when">Sept 2023 — Present · notice period</span>
+                        <h4>Consultant, Risk Consulting (Oracle ERP Security) — Ernst &amp; Young (EY)</h4>
+                        <p>Oracle ERP security across implementation and review engagements: conflict-free role design, user provisioning, and access controls (AAC/AFC) in Oracle Risk Management Cloud, plus pre-implementation security reviews of third-party implementations. Alongside the consulting, I built the internal data tools EY teams now use for this analysis.</p>
+                        <ul class="exp-points">
+                            <li><span class="ep-num sub">Core role</span> designing roles free of SoD conflicts, provisioning users, configuring AAC/AFC controls, and reviewing third-party ERP security implementations before go-live.</li>
+                            <li><span class="ep-num" data-c="3" data-s="M+">0</span> records &amp; 100K+ users processed in seconds by an SoD &amp; sensitive-access analysis web app I built for EY internal teams — cutting manual analysis ~70–80%, with audit-ready Excel exports.</li>
+                            <li><span class="ep-num" data-c="40" data-s="%">0</span> fewer irrelevant flags via the tool's 3-level false-positive pipeline — separating true violations, false positives, and single-leg cases.</li>
+                            <li><span class="ep-num sub">days → &lt;1&nbsp;min</span> replacing manual Excel with a Jaccard-similarity ruleset-mapping engine producing consultant-ready, confidence-scored mapping recommendations for internal teams.</li>
+                            <li><span class="ep-num sub">Dev ↔ Prod</span> automated cross-environment role comparison using vectorised semi/anti-joins — replacing manual Excel checks in go-live validation.</li>
+                            <li><span class="ep-num sub">Advisory</span> GRC subject-matter expert on EY's AI audit agent — reviewed model outputs for accuracy, explainability, and regulatory relevance (advisory, not built by me).</li>
+                        </ul>
+                        <div class="chips"><span>Python</span><span>Polars</span><span>FastAPI</span><span>Power BI</span><span>SQL</span><span>Oracle GRC (AAC/AFC)</span></div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ===== CERTIFICATION ===== -->
+        <section class="section certs" id="certs">
+            <div class="wrap">
+                <div class="sec-head center rv">
+                    <span class="tag">Credentials</span>
+                    <h2>Certification</h2>
+                </div>
+                <div class="cert-strip rv">
+                    <button class="cert-shot" data-full="images/DP900_Certification.png" aria-label="Enlarge DP-900 certificate">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/DP900_Certification.png" alt="Microsoft Azure Data Fundamentals DP-900 certificate" loading="lazy" /></span>
+                    </button>
+                    <div class="cert-info">
+                        <span class="cert-mark">DP-900</span>
+                        <span class="cert-title">Microsoft Certified: Azure Data Fundamentals</span>
+                        <span class="cert-desc">Foundational cloud and data concepts on Microsoft Azure — relational and non-relational data, big data, and analytics workloads.</span>
+                        <span class="chips"><span>Azure Cloud</span><span>Data management</span><span>Analytics</span></span>
+                        <a class="link-arrow" href="https://learn.microsoft.com/en-us/users/mohdkhizar-5428/credentials/dffcb2ded1ff5bed" target="_blank" rel="noopener">View full certificate <span>↗</span></a>
+                    </div>
+                </div>
+                <div class="cert-strip rv">
+                    <button class="cert-shot" data-full="images/PowerBI_Certificate.png" aria-label="Enlarge Power BI certificate">
+                        <span class="frame"><span class="frame-bar"><i></i><i></i><i></i></span><img src="images/PowerBI_Certificate.png" alt="Microsoft Power BI Data Analyst specialization certificate" loading="lazy" /></span>
+                    </button>
+                    <div class="cert-info">
+                        <span class="cert-mark">Power BI</span>
+                        <span class="cert-title">Microsoft Power BI Data Analyst Specialization</span>
+                        <span class="cert-desc">End-to-end Power BI workflow — connecting and transforming data, modelling with DAX, and designing interactive reports and dashboards.</span>
+                        <span class="chips"><span>Power BI</span><span>DAX</span><span>Data modelling</span></span>
+                        <a class="link-arrow" href="https://www.coursera.org/account/accomplishments/specialization/certificate/ATU2NAXRPPBW" target="_blank" rel="noopener">View full certificate <span>↗</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACT ===== -->
+        <section class="section contact" id="contact">
+            <div class="wrap contact-grid">
+                <div class="contact-left rv">
+                    <span class="tag">Contact</span>
+                    <h2>Have a project?<br><span class="accent">Let's talk!</span></h2>
+                    <p>Available to join immediately. Whether it's a dataset that won't behave, a dashboard that needs a rethink, or a role to fill — I'd love to hear about it.</p>
+                    <a href="mailto:khizerwork75@gmail.com" class="btn btn-primary">Say hello ↗</a>
+                    <div class="contact-socials">
+                        <a href="https://www.linkedin.com/in/khizar246/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+                        <a href="https://github.com/Khizar246" target="_blank" rel="noopener" aria-label="GitHub">gh</a>
+                        <a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" rel="noopener" aria-label="Tableau">tb</a>
+                    </div>
+                </div>
+                <div class="contact-card rv" data-d="1">
+                    <ul class="contact-list">
+                        <li><span>Email</span><a href="mailto:khizerwork75@gmail.com">khizerwork75@gmail.com</a></li>
+                        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/khizar246/" target="_blank" rel="noopener">/in/khizar246</a></li>
+                        <li><span>GitHub</span><a href="https://github.com/Khizar246" target="_blank" rel="noopener">@Khizar246</a></li>
+                        <li><span>Tableau</span><a href="https://public.tableau.com/app/profile/mohd.khizer/vizzes" target="_blank" rel="noopener">mohd.khizer</a></li>
+                        <li><span>Résumé</span><a href="assets/Resume.pdf" target="_blank" rel="noopener">Download PDF ↗</a></li>
+                    </ul>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" aria-label="Close lightbox">
-                <i class="fas fa-times"></i>
-            </button>
-            <img src="" alt="Full size image" />
-        </div>
-    </div>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <p>&copy; 2024 Mohd Khizar. All rights reserved.</p>
-            <p>Designed with passion for data and innovation.</p>
+        <div class="wrap footer-inner">
+            <a href="#top" class="logo">Mohd<span>Khizar</span><i class="logo-dot"></i></a>
+            <p>© <span id="year">2026</span> Mohd Khizar. Built secure, shipped audit-ready.</p>
+            <a href="#top" class="to-top">Back to top ↑</a>
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Lightbox -->
+    <div class="lb" id="lb" aria-hidden="true">
+        <button class="lb-x" id="lb-x" aria-label="Close">✕</button>
+        <img src="" alt="" id="lb-img" />
+    </div>
+
     <script src="assets/js/main.js"></script>
 </body>
 </html>

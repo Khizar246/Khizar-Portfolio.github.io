@@ -1,560 +1,187 @@
-// ===== MODERN PORTFOLIO JAVASCRIPT =====
+/* Mohd Khizar — portfolio interactions */
+(() => {
+  "use strict";
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initThemeToggle();
-    initNavigation();
-    initScrollAnimations();
-    initLightbox();
-    initSmoothScrolling();
-    initScrollSpy();
-});
+  const yr = $("#year"); if (yr) yr.textContent = new Date().getFullYear();
 
-// ===== THEME TOGGLE FUNCTIONALITY =====
-function initThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    setTheme(savedTheme);
-    
-    // Theme toggle click handler
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
+  /* header scrolled + glow follows section */
+  const header = $("#header");
+  const glow = $("#bg-glow");
+  const sections = $$("section[id]");
+  const glowPos = {
+    hero:       { top: "-8%",  left: "78%" },
+    about:      { top: "18%",  left: "18%" },
+    work:       { top: "48%",  left: "82%" },
+    stack:      { top: "68%",  left: "20%" },
+    experience: { top: "90%",  left: "78%" },
+    certs:      { top: "110%", left: "24%" },
+    contact:    { top: "128%", left: "72%" },
+  };
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      header.classList.toggle("scr", window.scrollY > 20);
+      const mid = window.scrollY + innerHeight * 0.4;
+      let cur = sections[0];
+      for (const s of sections) if (s.offsetTop <= mid) cur = s;
+      if (glow && cur && glowPos[cur.id]) { glow.style.top = glowPos[cur.id].top; glow.style.left = glowPos[cur.id].left; }
+      ticking = false;
     });
-    
-    function setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        
-        // Update icon
-        if (theme === 'dark') {
-            themeIcon.className = 'fas fa-sun';
-            themeToggle.setAttribute('aria-label', 'Switch to light mode');
-        } else {
-            themeIcon.className = 'fas fa-moon';
-            themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-        }
-        
-        // Add smooth transition effect
-        themeToggle.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            themeToggle.style.transform = 'scale(1)';
-        }, 150);
-    }
-}
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
-// ===== NAVIGATION FUNCTIONALITY =====
-function initNavigation() {
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navClose = document.getElementById('nav-close');
-    const navOverlay = document.getElementById('nav-overlay');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    // Open navigation menu
-    navToggle.addEventListener('click', openNav);
-    
-    // Close navigation menu
-    navClose.addEventListener('click', closeNav);
-    navOverlay.addEventListener('click', closeNav);
-    
-    // Close menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', closeNav);
-    });
-    
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            closeNav();
-        }
-    });
-    
-    function openNav() {
-        navMenu.classList.add('active');
-        navOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        // Focus management for accessibility
-        navClose.focus();
-    }
-    
-    function closeNav() {
-        navMenu.classList.remove('active');
-        navOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        
-        // Return focus to toggle button
-        navToggle.focus();
-    }
-}
+  /* Smooth in-page nav. Self-correcting: it re-measures the target's live
+     position every frame, so lazy-loaded images and reveal animations that
+     shift the layout mid-scroll can't leave us short of the section. */
+  const headerH = () => (header?.offsetHeight || 56) + 8;
+  const targetY = (target, id) =>
+    Math.max(0, target.getBoundingClientRect().top + window.scrollY - (id === "top" ? 0 : headerH()));
 
-// ===== SCROLL ANIMATIONS =====
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+  let scrollAnim = null;
+  const jumpTo = (id) => {
+    const target = document.getElementById(id) || (id === "top" ? document.body : null);
+    if (!target) return;
+    // Reveal everything above the target up front so height is roughly stable.
+    const tTop = target.getBoundingClientRect().top + window.scrollY;
+    $$(".rv:not(.in)").forEach(el => {
+      if (el.getBoundingClientRect().top + window.scrollY < tTop) el.classList.add("in");
+    });
+    if (reduce) { window.scrollTo(0, targetY(target, id)); history.replaceState(null, "", id === "top" ? location.pathname : "#" + id); return; }
+
+    if (scrollAnim) cancelAnimationFrame(scrollAnim);
+    const startY = window.scrollY, t0 = performance.now(), dur = 650;
+    const easeInOut = p => p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+    const step = (now) => {
+      const p = Math.min((now - t0) / dur, 1);
+      const goal = targetY(target, id);            // re-measure live (absorbs shifts)
+      window.scrollTo(0, startY + (goal - startY) * easeInOut(p));
+      if (p < 1) { scrollAnim = requestAnimationFrame(step); }
+      else {
+        window.scrollTo(0, targetY(target, id));   // final snap to the true position
+        history.replaceState(null, "", id === "top" ? location.pathname : "#" + id);
+        scrollAnim = null;
+      }
     };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                
-                // Add staggered animation for child elements
-                const children = entry.target.querySelectorAll('.skill-tag, .project-card, .stat-item');
-                children.forEach((child, index) => {
-                    setTimeout(() => {
-                        child.style.opacity = '1';
-                        child.style.transform = 'translateY(0)';
-                    }, index * 100);
-                });
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        observer.observe(section);
-        
-        // Initially hide animated elements
-        const animatedElements = section.querySelectorAll('.skill-tag, .project-card, .stat-item');
-        animatedElements.forEach(element => {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        });
+    scrollAnim = requestAnimationFrame(step);
+  };
+  $$('a[href^="#"]').forEach(a => {
+    a.addEventListener("click", (e) => {
+      const id = a.getAttribute("href").slice(1);
+      if (!id) return;
+      e.preventDefault();
+      jumpTo(id);
     });
-}
+  });
 
-// ===== IMPROVED LIGHTBOX FUNCTIONALITY =====
-function initLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (!lightbox) {
-        console.error('Lightbox element not found');
-        return;
-    }
-    
-    const lightboxImg = lightbox.querySelector('img');
-    const lightboxClose = lightbox.querySelector('.lightbox-close');
-    
-    if (!lightboxImg || !lightboxClose) {
-        console.error('Lightbox components not found');
-        return;
-    }
-    
-    // Function to open lightbox with improved image handling
-    function openLightbox(src, alt) {
-        // Show lightbox immediately
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        
-        // Reset image state
-        lightboxImg.classList.remove('loaded');
-        lightboxImg.style.opacity = '0';
-        
-        // Create a new image to preload and get dimensions
-        const img = new Image();
-        img.onload = function() {
-            // Set the source
-            lightboxImg.src = src;
-            lightboxImg.alt = alt || '';
-            
-            // Calculate if image needs special handling
-            const imageAspectRatio = this.naturalWidth / this.naturalHeight;
-            const viewportAspectRatio = window.innerWidth / window.innerHeight;
-            
-            // Apply loaded class for fade in effect
-            setTimeout(() => {
-                lightboxImg.classList.add('loaded');
-                lightboxImg.style.opacity = '1';
-            }, 50);
-            
-            // Scroll to top of lightbox to ensure image is visible
-            lightbox.scrollTop = 0;
-        };
-        
-        img.onerror = function() {
-            console.error('Failed to load image:', src);
-            closeLightbox();
-        };
-        
-        // Start loading the image
-        img.src = src;
-        
-        // Focus management
-        lightboxClose.focus();
-        
-        // Prevent background scrolling
-        document.addEventListener('touchmove', preventScroll, { passive: false });
-        
-        console.log('Lightbox opened for:', alt || src);
-    }
-    
-    // Function to close lightbox
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-        
-        // Remove scroll prevention
-        document.removeEventListener('touchmove', preventScroll);
-        
-        // Clear image source and reset state after transition
-        setTimeout(() => {
-            if (!lightbox.classList.contains('active')) {
-                lightboxImg.src = '';
-                lightboxImg.alt = '';
-                lightboxImg.classList.remove('loaded');
-                lightboxImg.style.opacity = '0';
-            }
-        }, 300);
-        
-        console.log('Lightbox closed');
-    }
-    
-    function preventScroll(e) {
-        e.preventDefault();
-    }
-    
-    // Close lightbox handlers
-    lightboxClose.addEventListener('click', closeLightbox);
-    
-    // Close on background click (but not on image)
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-    
-    // Enhanced keyboard handlers
-    document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('active')) {
-            switch(e.key) {
-                case 'Escape':
-                    closeLightbox();
-                    break;
-                case 'ArrowUp':
-                case 'ArrowDown':
-                case 'PageUp':
-                case 'PageDown':
-                    // Allow scrolling within lightbox
-                    e.stopPropagation();
-                    break;
-            }
-        }
-    });
-    
-    // Add click handlers to all clickable images
-    const clickableImages = document.querySelectorAll('.clickable-image');
-    console.log(`Found ${clickableImages.length} clickable images`);
-    
-    clickableImages.forEach((img, index) => {
-        console.log(`Setting up image ${index}: ${img.alt || img.src}`);
-        
-        // Make sure image is clickable
-        img.style.cursor = 'pointer';
-        img.setAttribute('tabindex', '0');
-        
-        // Click handler
-        const clickHandler = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log(`Image clicked: ${this.alt || this.src}`);
-            openLightbox(this.src, this.alt);
-        };
-        
-        img.addEventListener('click', clickHandler);
-        
-        // Keyboard support
-        img.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                openLightbox(img.src, img.alt);
-            }
-        });
-    });
-    
-    // Additional fix: Make project containers clickable as backup
-    const projectContainers = document.querySelectorAll('.project-image-container');
-    projectContainers.forEach(container => {
-        container.style.cursor = 'pointer';
-        container.addEventListener('click', function(e) {
-            // Only trigger if we didn't click directly on the image
-            const img = this.querySelector('.clickable-image');
-            if (img && (e.target === this || e.target.classList.contains('project-overlay'))) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log(`Container clicked for: ${img.alt || img.src}`);
-                openLightbox(img.src, img.alt);
-            }
-        });
-    });
-    
-    // Handle window resize to adjust lightbox
-    window.addEventListener('resize', debounce(() => {
-        if (lightbox.classList.contains('active')) {
-            lightbox.scrollTop = 0;
-        }
-    }, 250));
-    
-    console.log('Lightbox initialization complete');
-}
+  /* mobile menu */
+  const burger = $("#burger");
+  const menu = $("#mobile-menu");
+  const toggle = (open) => {
+    const o = open ?? !menu.classList.contains("open");
+    menu.classList.toggle("open", o);
+    menu.setAttribute("aria-hidden", String(!o));
+    burger.setAttribute("aria-expanded", String(o));
+  };
+  burger?.addEventListener("click", () => toggle());
+  $$("#mobile-menu a").forEach(a => a.addEventListener("click", () => toggle(false)));
 
-// ===== SMOOTH SCROLLING =====
-function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-    const heroButton = document.querySelector('.hero-cta a[href^="#"]');
-    
-    // Handle navigation links
-    navLinks.forEach(link => {
-        link.addEventListener('click', handleSmoothScroll);
-    });
-    
-    // Handle hero button
-    if (heroButton) {
-        heroButton.addEventListener('click', handleSmoothScroll);
-    }
-    
-    function handleSmoothScroll(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-            const headerOffset = 80; // Offset for fixed elements
-            const elementPosition = targetSection.offsetTop;
-            const offsetPosition = elementPosition - headerOffset;
-            
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-            
-            // Update URL without triggering scroll
-            history.pushState(null, null, targetId);
-        }
-    }
-}
+  /* reveal on scroll */
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
+  $$(".rv").forEach(el => io.observe(el));
+  requestAnimationFrame(() => $$(".hero .rv").forEach(el => el.classList.add("in")));
 
-// ===== SCROLL SPY =====
-function initScrollSpy() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollY = window.pageYOffset;
-        
-        sections.forEach(section => {
-            const sectionHeight = section.offsetHeight;
-            const sectionTop = section.offsetTop - 100;
-            
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        // Update active nav link
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    });
-}
-
-// ===== PERFORMANCE OPTIMIZATIONS =====
-
-// Throttle function for performance
-function throttle(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+  /* count-up numbers (0 -> value, fast through big numbers via easing) */
+  const fmt = (n, d) => d > 0 ? n.toFixed(d) : Math.round(n).toLocaleString("en-US");
+  const count = (el) => {
+    const t = parseFloat(el.dataset.c), d = parseInt(el.dataset.dec || "0", 10), s = el.dataset.s || "";
+    if (reduce) { el.textContent = fmt(t, d) + s; return; }
+    const dur = 1600, start = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3); // fast at first, eases into final value
+      el.textContent = fmt(t * eased, d) + s;
+      if (p < 1) requestAnimationFrame(tick);
     };
-}
+    requestAnimationFrame(tick);
+  };
+  const cio = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { count(e.target); cio.unobserve(e.target); }
+  }), { threshold: 0.6 });
+  $$("[data-c]").forEach(el => cio.observe(el));
 
-// Lazy loading for images (if needed)
-function initLazyLoading() {
-    if ('IntersectionObserver' in window) {
-        const lazyImages = document.querySelectorAll('img[data-src]');
-        
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        lazyImages.forEach(img => imageObserver.observe(img));
-    }
-}
+  /* lightbox */
+  const lb = $("#lb"), lbImg = $("#lb-img");
+  const open = (src) => { lbImg.src = src; lb.classList.add("on"); lb.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; };
+  const close = () => { lb.classList.remove("on"); lb.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; lbImg.src = ""; };
+  $$("[data-full]").forEach(el => el.addEventListener("click", () => open(el.dataset.full)));
+  $("#lb-x")?.addEventListener("click", close);
+  lb?.addEventListener("click", e => { if (e.target === lb) close(); });
+  addEventListener("keydown", e => { if (e.key === "Escape") { close(); toggle(false); } });
 
-// ===== ENHANCED INTERACTIONS =====
+  /* ---- Ambient background: drifting connected data points ---- */
+  const canvas = $("#bg-canvas");
+  if (canvas && !reduce) {
+    const ctx = canvas.getContext("2d");
+    let w, h, dpr, pts = [];
+    const mouse = { x: -999, y: -999 };
+    const CORAL = [255, 107, 87];
 
-// Add ripple effect to buttons
-function addRippleEffect() {
-    const buttons = document.querySelectorAll('.btn');
-    
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.3);
-                transform: scale(0);
-                animation: ripple 0.6s linear;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                pointer-events: none;
-            `;
-            
-            this.style.position = 'relative';
-            this.style.overflow = 'hidden';
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-    });
-}
-
-// Add CSS for ripple animation
-const rippleStyle = document.createElement('style');
-rippleStyle.textContent = `
-    @keyframes ripple {
-        to {
-            transform: scale(4);
-            opacity: 0;
+    const resize = () => {
+      dpr = Math.min(devicePixelRatio || 1, 2);
+      w = innerWidth; h = innerHeight;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      build();
+    };
+    const build = () => {
+      const n = Math.min(70, Math.floor((w * h) / 26000));
+      pts = Array.from({ length: n }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+        r: Math.random() * 1.6 + 0.6
+      }));
+    };
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      const [cr, cg, cb] = CORAL;
+      for (const p of pts) {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+        // gentle pull toward cursor
+        const dx = mouse.x - p.x, dy = mouse.y - p.y, dist = Math.hypot(dx, dy);
+        if (dist < 160) { p.x += dx * 0.0016; p.y += dy * 0.0016; }
+        const near = Math.max(0, 1 - dist / 160);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r + near * 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${cr},${cg},${cb},${0.25 + near * 0.5})`;
+        ctx.fill();
+      }
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const a = pts[i], b = pts[j];
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 130) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(${cr},${cg},${cb},${(1 - d / 130) * 0.14})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
         }
-    }
-`;
-document.head.appendChild(rippleStyle);
-
-// ===== ACCESSIBILITY ENHANCEMENTS =====
-
-// Skip to main content link
-function addSkipLink() {
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.className = 'skip-link';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        left: 6px;
-        background: var(--primary-color);
-        color: white;
-        padding: 8px;
-        text-decoration: none;
-        border-radius: 4px;
-        z-index: 1000;
-        transition: top 0.3s;
-    `;
-    
-    skipLink.addEventListener('focus', () => {
-        skipLink.style.top = '6px';
-    });
-    
-    skipLink.addEventListener('blur', () => {
-        skipLink.style.top = '-40px';
-    });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
-}
-
-// ===== INITIALIZE ENHANCED FEATURES =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Add enhanced interactions
-    addRippleEffect();
-    addSkipLink();
-    
-    // Initialize lazy loading if needed
-    initLazyLoading();
-    
-    // Add loading states
-    document.body.classList.add('loaded');
-});
-
-// ===== UTILITY FUNCTIONS =====
-
-// Debounce function
-function debounce(func, wait, immediate) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            timeout = null;
-            if (!immediate) func(...args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func(...args);
+      }
+      requestAnimationFrame(draw);
     };
-}
-
-// Check if element is in viewport
-function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
-
-// ===== ERROR HANDLING =====
-window.addEventListener('error', (e) => {
-    console.error('Portfolio Error:', e.error);
-    // You can add error reporting here if needed
-});
-
-// ===== PERFORMANCE MONITORING =====
-window.addEventListener('load', () => {
-    // Log performance metrics
-    if ('performance' in window) {
-        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-        console.log(`Portfolio loaded in ${loadTime}ms`);
-    }
-});
-
-// ===== EXPORT FOR TESTING =====
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        initThemeToggle,
-        initNavigation,
-        initScrollAnimations,
-        initLightbox,
-        initSmoothScrolling,
-        initScrollSpy,
-        throttle,
-        debounce,
-        isInViewport
-    };
-}
+    addEventListener("mousemove", e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    addEventListener("mouseleave", () => { mouse.x = -999; mouse.y = -999; });
+    addEventListener("resize", resize);
+    resize(); draw();
+  }
+})();
